@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "FOOD")
@@ -11,12 +13,17 @@ public class FoodModel {
 
     @Id
     private String name;
+
     @Column(nullable = false)
+    //@NotEmpty(message = "Price is mandatory") - Not Empty não testa pra int, apenas pra String ou Collections
     private int price;
+
     @Column(nullable = false)
     private int mass;
+
     @Column(nullable = false)
     private int stockAmount;
+
     @Column(length = 400)
     private String description;
 
@@ -25,6 +32,7 @@ public class FoodModel {
     public FoodModel() {
     }
 
+    //Se eu inserir apenas o nome no JSON ele coloca valores default nos outros
     public FoodModel(String name, int price, int mass, int stockAmount) {
         this.name = name;
         this.price = price;
