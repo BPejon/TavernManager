@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "DRINKS")
@@ -11,13 +12,21 @@ public class DrinksModel {
 
     @Id
     private String name;
+
     @Column(nullable = false)
+    @Positive(message = "number has to be greater than zero")
     private int price;
+
     @Column
+    @Positive(message = "number has to be greater than zero")
     private int bottleSize;
+
     @Column(nullable = false)
+    @Positive(message = "number has to be greater than zero")
     private int stockAmount;
+
     @Column(length = 400)
+    //Se eu nap coloco descrição, ele pega um erro no bottleSize que não é maior q zero TODO
     private String description;
 
     public DrinksModel() {
