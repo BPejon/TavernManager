@@ -4,8 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "FOOD")
@@ -16,12 +15,16 @@ public class FoodModel {
 
     @Column(nullable = false)
     //@NotEmpty(message = "Price is mandatory") - Not Empty não testa pra int, apenas pra String ou Collections
+    @Positive(message = "number has to be greater than zero")
     private int price;
 
-    @Column(nullable = false)
-    private int mass;
 
     @Column(nullable = false)
+    @Positive(message = "number has to be greater than zero")
+    private float mass;
+
+    @Column(nullable = false)
+    @Positive(message = "number has to be greater than zero")
     private int stockAmount;
 
     @Column(length = 400)
@@ -33,7 +36,7 @@ public class FoodModel {
     }
 
     //Se eu inserir apenas o nome no JSON ele coloca valores default nos outros
-    public FoodModel(String name, int price, int mass, int stockAmount) {
+    public FoodModel(String name, int price, float mass, int stockAmount) {
         this.name = name;
         this.price = price;
         this.mass = mass;
@@ -41,7 +44,7 @@ public class FoodModel {
         this.description = "No Descrition on this food";
     }
 
-    public FoodModel(String name, int price, int mass, int stockAmount, String description) {
+    public FoodModel(String name, int price, float mass, int stockAmount, String description) {
         this.name = name;
         this.price = price;
         this.mass = mass;
@@ -65,11 +68,11 @@ public class FoodModel {
         this.price = price;
     }
 
-    public int getMass() {
+    public float getMass() {
         return mass;
     }
 
-    public void setMass(int mass) {
+    public void setMass(float mass) {
         this.mass = mass;
     }
 
