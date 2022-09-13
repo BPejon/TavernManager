@@ -1,10 +1,10 @@
 package com.tavernmanager.Tavern.Manager.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Positive;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Entity
 @Table(name = "TRAVELLER")
@@ -21,6 +21,12 @@ public class TravellerModel {
     @Column(nullable = false)
     @Positive(message = "number has to be greater than zero")
     private int coins;
+
+    @ManyToMany
+    @JoinTable(name = "drinksInInventory",
+                joinColumns = @JoinColumn(name = "drinks_pkey"),
+    inverseJoinColumns = @JoinColumn( name = "traveller_pkey"))
+    private Set<DrinksModel> drinksInventory;
 
     public TravellerModel() {
     }
