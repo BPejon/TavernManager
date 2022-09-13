@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "TRAVELLER")
@@ -18,6 +19,7 @@ public class TravellerModel {
     @Column
     private int level;
     @Column(nullable = false)
+    @Positive(message = "number has to be greater than zero")
     private int coins;
 
     public TravellerModel() {
