@@ -26,4 +26,8 @@ public class DrinksService {
     public List<DrinksModel> getAllDrinks() {
         return drinksRepository.findAll();
     }
+
+    public void delete(String drinkName) {
+        drinksRepository.deleteById(drinkName);
+    }
 }

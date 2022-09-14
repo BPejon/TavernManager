@@ -11,6 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 @RestController
 @RequestMapping("/drinks")
@@ -42,4 +43,29 @@ public class DrinksController {
         List<DrinksModel> allDrinks = drinksService.getAllDrinks();
         return ResponseEntity.status(HttpStatus.OK).body(allDrinks);
     }
+
+    @PutMapping("/{drinkName}") // Quando coloco outro nome ele cria ao inves de atualizar
+    public ResponseEntity<Object> updateDrink (@PathVariable String drinkName, @RequestBody DrinksModel drink){
+        Optional<DrinksModel> updateDrink = drinksService.getDrink(drinkName);
+        //Comparar nomes
+//        if(drinkName!= drink.getName())
+//            return ResponseEntity.status(HttpStatus.CONFLICT).body("Drink id's are not the same");
+        if(!updateDrink.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(drinkName + " Not Found!");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(drinksService.insertDrink(drink));
+    }
+
+    @DeleteMapping("/{drinkName}")
+    public ResponseEntity<Object> deleteDrink(@PathVariable String drinkName){
+        //Check if exists
+        Optional<DrinksModel> drink = drinksService.getDrink(drinkName);
+        if(!drink.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(drinkName + " Not Found");
+
+        drinksService.delete(drink.get().getName());
+        return ResponseEntity.status(HttpStatus.OK).body(drinkName + " deleted successfully");
+    }
+
 }
