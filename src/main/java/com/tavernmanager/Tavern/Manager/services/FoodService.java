@@ -25,4 +25,8 @@ public class FoodService {
     public List<FoodModel> getAllFood() {
         return foodRepository.findAll();
     }
+
+    public void delete(String name) {
+        foodRepository.deleteById(name);
+    }
 }
