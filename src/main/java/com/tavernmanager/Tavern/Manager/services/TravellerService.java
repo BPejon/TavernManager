@@ -24,4 +24,8 @@ public class TravellerService {
     public List<TravellerModel> getAllTravellers() {
         return travellerRepository.findAll();
     }
+
+    public void deleteTraveller(String name) {
+        travellerRepository.deleteById(name);
+    }
 }

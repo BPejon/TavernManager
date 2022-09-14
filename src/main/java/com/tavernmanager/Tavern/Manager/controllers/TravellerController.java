@@ -47,6 +47,18 @@ public class TravellerController {
         return ResponseEntity.status(HttpStatus.OK).body(allTravellers);
     }
 
-
-
+    @PutMapping("/{name}")
+    public ResponseEntity<Object> updateTraveler(@PathVariable String name, @RequestBody TravellerModel traveller){
+        Optional<TravellerModel> updateTraveller = travellerService.getTraveller(name);
+        if(!updateTraveller.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(traveller + " Not Found");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(travellerService.createTraveller(traveller));
+    }
+    
+    @DeleteMapping("/{name}")
+    public ResponseEntity<Object> deleteTraveller(@PathVariable String name){
+        travellerService.deleteTraveller(name);
+        return ResponseEntity.status(HttpStatus.OK).body(name + " Removed successfully");
+    }
 }
