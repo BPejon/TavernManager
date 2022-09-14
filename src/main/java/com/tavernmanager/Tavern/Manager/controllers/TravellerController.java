@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.persistence.EntityListeners;
+import javax.swing.text.html.Option;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 @RestController
 @RequestMapping("/traveller")
@@ -55,10 +57,14 @@ public class TravellerController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(travellerService.createTraveller(traveller));
     }
-    
+
     @DeleteMapping("/{name}")
     public ResponseEntity<Object> deleteTraveller(@PathVariable String name){
-        travellerService.deleteTraveller(name);
+        Optional<TravellerModel> traveller = travellerService.getTraveller(name);
+        if(!traveller.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(name + " not Found!");
+
+        travellerService.deleteTraveller(traveller.get().getName());
         return ResponseEntity.status(HttpStatus.OK).body(name + " Removed successfully");
     }
 }
