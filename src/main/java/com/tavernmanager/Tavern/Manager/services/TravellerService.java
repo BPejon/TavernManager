@@ -1,6 +1,7 @@
 package com.tavernmanager.Tavern.Manager.services;
 
 import com.tavernmanager.Tavern.Manager.models.DrinksModel;
+import com.tavernmanager.Tavern.Manager.models.FoodModel;
 import com.tavernmanager.Tavern.Manager.models.TravellerModel;
 import com.tavernmanager.Tavern.Manager.repositories.TravellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,14 @@ public class TravellerService {
         travellerRepository.deleteById(name);
     }
 
-    public TravellerModel addDrinkInventory(TravellerModel traveller, DrinksModel drink) {
+    public TravellerModel addInInventory(TravellerModel traveller, DrinksModel drink) {
         traveller.addDrinksInInventory(drink);
 
+        return travellerRepository.save(traveller);
+    }
+
+    public TravellerModel addInInventory(TravellerModel traveller, FoodModel food) {
+        traveller.addFoodInInventory(food);
         return travellerRepository.save(traveller);
     }
 }

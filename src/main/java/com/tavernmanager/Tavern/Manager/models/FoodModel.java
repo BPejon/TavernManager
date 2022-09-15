@@ -1,10 +1,8 @@
 package com.tavernmanager.Tavern.Manager.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "FOOD")
@@ -30,6 +28,8 @@ public class FoodModel {
     @Column(length = 400)
     private String description;
 
+    @ManyToMany(mappedBy = "foodInventory")
+    private Set<TravellerModel> travellers;
 
 
     public FoodModel() {
@@ -92,4 +92,9 @@ public class FoodModel {
         this.description = description;
     }
 
+    public int discountStock(int stockChange) {
+        if(this.stockAmount- stockChange < 0)
+            return -1;
+        return this.stockAmount -= stockChange;
+    }
 }

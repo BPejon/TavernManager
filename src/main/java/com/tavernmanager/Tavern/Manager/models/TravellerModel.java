@@ -30,7 +30,19 @@ public class TravellerModel {
     inverseJoinColumns = @JoinColumn( name = "traveller_id "))
     private Set<DrinksModel> drinksInventory = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(name = "foodInInventory", joinColumns = @JoinColumn(name = "food_id"), inverseJoinColumns = @JoinColumn(name = "traveller_id"))
+    private Set<FoodModel> foodInventory = new HashSet<>();
+
     public TravellerModel() {
+    }
+
+    public Set<FoodModel> getFoodInventory() {
+        return foodInventory;
+    }
+
+    public void setFoodInventory(Set<FoodModel> foodInventory) {
+        this.foodInventory = foodInventory;
     }
 
     public TravellerModel(String name, String province, String classType, int level, int coins) {
@@ -106,5 +118,9 @@ public class TravellerModel {
             return -1;
         }
         return this.coins -= price;
+    }
+
+    public void addFoodInInventory(FoodModel food) {
+        foodInventory.add(food);
     }
 }
