@@ -30,8 +30,15 @@ public class ShopController {
         this.foodService = foodService;
     }
 
-    @PutMapping("/{travellerName}/buydrink/{drinkName}")
-    private ResponseEntity<Object> buyOneDrink(@PathVariable String travellerName, @PathVariable String drinkName){
+    @RequestMapping(value = {"/{travellerName}/buydrink/{drinkName}","/{travellerName}/buydrink/{drinkName}/{items}"}, method = RequestMethod.PUT)
+    private ResponseEntity<Object> buyDrink(@PathVariable String travellerName, @PathVariable String drinkName, @PathVariable Optional<Integer> items){
+        int itemsNumber;
+        if(!items.isPresent()) {
+            itemsNumber = ONE_ITEM;
+        }
+        else{
+            itemsNumber = items.get();
+        }
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
         if(!traveller.isPresent())
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(travellerName + " not found!");
@@ -41,18 +48,52 @@ public class ShopController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(drinkName + " Not Found!");
 
         //Tirar coins do traveller
-        int coins = traveller.get().discountCoins(drink.get().getPrice());
+        int coins = traveller.get().discountCoins(drink.get().getPrice()*itemsNumber);
         if(coins == -1)
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(travellerName + " doesn't have necessary coins to buy!");
 
         //tirar do estoque
-        int stock = drink.get().discountStock(ONE_ITEM);
+        int stock = drink.get().discountStock(itemsNumber);
         if(stock == -1)
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(drinkName + " doesn't have stock for this item!");
         drinksService.insertDrink(drink.get());
 
         return ResponseEntity.status(HttpStatus.OK).body(travellerService.addInInventory(traveller.get(), drink.get()));
     }
+   //Java não possui default parameters -> Ele resolve com overloading, varargs, nulls, optional class
+
+       //É possivel fazer urls opicionais??
+        //Além disso seria uma boa prática?? Pelo menos n precisaria reutilizar muito código
+     @RequestMapping(value = {"/{travellerName}/buyfood/{foodName}/{items}", "/{travellerName}/buyfood/{foodName}"}, method = RequestMethod.PUT)
+    private ResponseEntity<Object> buyFood(@PathVariable String travellerName, @PathVariable String foodName, @PathVariable Optional<Integer> items){
+        int itemsNumber;
+        if(!items.isPresent()) {
+            itemsNumber = ONE_ITEM;
+        }
+        else{
+            itemsNumber = items.get();
+        }
+        Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
+        if(!traveller.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(travellerName + " not found!");
+        }
+        Optional<FoodModel> food = foodService.getFood(foodName);
+        if(!food.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(foodName + " not found!");
+        }
+
+        int coins = traveller.get().discountCoins(food.get().getPrice()*itemsNumber);
+        if(coins == -1)
+            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(travellerName + " doesn't have necessary coins to buy!");
+
+        int stock = food.get().discountStock(itemsNumber);
+        if(stock == -1)
+            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(foodName + " doesn't have stock for this item!");
+        foodService.insertFood(food.get());
+
+        return ResponseEntity.status(HttpStatus.OK).body(travellerService.addInInventory(traveller.get(), food.get()));
+   }
+
 
 
 //    @PutMapping("/{travellerName}/buyfood/{foodName}")
@@ -101,39 +142,5 @@ public class ShopController {
 //
 //        return ResponseEntity.status(HttpStatus.OK).body(travellerService.addInInventory(traveller.get(), food.get()));
 //    }
-   //Java não possui default parameters -> Ele resolve com overloading, varargs, nulls, optional class
-
-       //É possivel fazer urls opicionais??
-        //Além disso seria uma boa prática?? Pelo menos n precisaria reutilizar muito código
-     @RequestMapping(value = {"/{travellerName}/buyfood/{foodName}/{items}", "/{travellerName}/buyfood/{foodName}"}, method = RequestMethod.PUT)
-    private ResponseEntity<Object> buyFood(@PathVariable String travellerName, @PathVariable String foodName, @PathVariable Optional<Integer> items){
-        int itemsNumber;
-        if(!items.isPresent()) {
-            itemsNumber = ONE_ITEM;
-        }
-        else{
-            itemsNumber = items.get();
-        }
-        Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
-        if(!traveller.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(travellerName + " not found!");
-        }
-        Optional<FoodModel> food = foodService.getFood(foodName);
-        if(!food.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(foodName + " not found!");
-        }
-
-        int coins = traveller.get().discountCoins(food.get().getPrice()*itemsNumber);
-        if(coins == -1)
-            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(travellerName + " doesn't have necessary coins to buy!");
-
-        int stock = food.get().discountStock(itemsNumber);
-        if(stock == -1)
-            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(foodName + " doesn't have stock for this item!");
-        foodService.insertFood(food.get());
-
-        return ResponseEntity.status(HttpStatus.OK).body(travellerService.addInInventory(traveller.get(), food.get()));
-   }
-
 
 }
