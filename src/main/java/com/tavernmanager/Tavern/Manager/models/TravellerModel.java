@@ -2,6 +2,8 @@ package com.tavernmanager.Tavern.Manager.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,14 +21,14 @@ public class TravellerModel {
     @Column
     private int level;
     @Column(nullable = false)
-    @Positive(message = "number has to be greater than zero")
+    @PositiveOrZero(message = "number has to be greater than zero")
     private int coins;
 
     @ManyToMany
     @JoinTable(name = "drinksInInventory",
-                joinColumns = @JoinColumn(name = "drinks_pkey"),
-    inverseJoinColumns = @JoinColumn( name = "traveller_pkey"))
-    private Set<DrinksModel> drinksInventory;
+                joinColumns = @JoinColumn(name = "drinks_id"),
+    inverseJoinColumns = @JoinColumn( name = "traveller_id "))
+    private Set<DrinksModel> drinksInventory = new HashSet<>();
 
     public TravellerModel() {
     }
@@ -37,6 +39,14 @@ public class TravellerModel {
         this.classType = classType;
         this.level = level;
         this.coins = coins;
+    }
+
+    public Set<DrinksModel> getDrinksInventory() {
+        return drinksInventory;
+    }
+
+    public void setDrinksInventory(Set<DrinksModel> drinksInventory) {
+        this.drinksInventory = drinksInventory;
     }
 
     public TravellerModel(String name) {
@@ -86,9 +96,15 @@ public class TravellerModel {
     public void setCoins(int coins) {
         this.coins = coins;
     }
-    /* Inventory
-    private Drinks drinks;
-    private Food foods;
-    * */
 
+    public void addDrinksInInventory(DrinksModel drink) {
+        drinksInventory.add(drink);
+    }
+
+    public int discountCoins(int price) {
+        if(this.coins - price < 0){
+            return -1;
+        }
+        return this.coins -= price;
+    }
 }

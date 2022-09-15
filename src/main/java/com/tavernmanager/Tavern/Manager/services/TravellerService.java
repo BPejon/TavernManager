@@ -1,5 +1,6 @@
 package com.tavernmanager.Tavern.Manager.services;
 
+import com.tavernmanager.Tavern.Manager.models.DrinksModel;
 import com.tavernmanager.Tavern.Manager.models.TravellerModel;
 import com.tavernmanager.Tavern.Manager.repositories.TravellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,11 @@ public class TravellerService {
 
     public void deleteTraveller(String name) {
         travellerRepository.deleteById(name);
+    }
+
+    public TravellerModel addDrinkInventory(TravellerModel traveller, DrinksModel drink) {
+        traveller.addDrinksInInventory(drink);
+        //Adicionar no drinks tmb??? seraw?
+        return travellerRepository.save(traveller);
     }
 }

@@ -1,10 +1,11 @@
 package com.tavernmanager.Tavern.Manager.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import javax.validation.constraints.Positive;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "DRINKS")
@@ -28,6 +29,11 @@ public class DrinksModel {
     @Column(length = 400)
     //Se eu nap coloco descrição, ele pega um erro no bottleSize que não é maior q zero TODO
     private String description;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "drinksInventory")
+    private Set<TravellerModel> travellers;
+
 
     public DrinksModel() {
     }
@@ -86,5 +92,11 @@ public class DrinksModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int discountStock(int stockChange) {
+        if(this.stockAmount- stockChange < 0)
+            return -1;
+        return this.stockAmount -= stockChange;
     }
 }
