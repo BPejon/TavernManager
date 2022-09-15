@@ -2,7 +2,6 @@ package com.tavernmanager.Tavern.Manager.controllers;
 
 import com.tavernmanager.Tavern.Manager.models.DrinksModel;
 import com.tavernmanager.Tavern.Manager.services.DrinksService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +10,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
 
 @RestController
 @RequestMapping("/drinks")
 public class DrinksController {
 
-
-    @Autowired
     private DrinksService drinksService;
+
+    public DrinksController(DrinksService drinksService) {
+        this.drinksService = drinksService;
+    }
 
     @PostMapping
     public ResponseEntity<Object> insertDrink(@RequestBody DrinksModel drink){

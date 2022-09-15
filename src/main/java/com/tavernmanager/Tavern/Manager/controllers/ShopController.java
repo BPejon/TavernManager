@@ -1,7 +1,6 @@
 package com.tavernmanager.Tavern.Manager.controllers;
 
 import com.tavernmanager.Tavern.Manager.models.DrinksModel;
-import com.tavernmanager.Tavern.Manager.models.FoodModel;
 import com.tavernmanager.Tavern.Manager.models.TravellerModel;
 import com.tavernmanager.Tavern.Manager.services.DrinksService;
 import com.tavernmanager.Tavern.Manager.services.FoodService;
@@ -20,14 +19,18 @@ import java.util.Optional;
 @RequestMapping("/shop")
 public class ShopController {
     private static int ONE_ITEM = 1;
-    @Autowired
+
     private TravellerService travellerService;
 
-    @Autowired
     private DrinksService drinksService;
 
-    @Autowired
     private FoodService foodService;
+
+    public ShopController(TravellerService travellerService, DrinksService drinksService, FoodService foodService) {
+        this.travellerService = travellerService;
+        this.drinksService = drinksService;
+        this.foodService = foodService;
+    }
 
     @PutMapping("/{travellerName}/buydrink/{drinkName}")
     private ResponseEntity<Object> buyOneDrink(@PathVariable String travellerName, @PathVariable String drinkName){

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class DrinksModel {
     private int bottleSize;
 
     @Column(nullable = false)
-    @Positive(message = "number has to be greater than zero")
+    @PositiveOrZero(message = "number has to be greater than zero")
     private int stockAmount;
 
     @Column(length = 400)

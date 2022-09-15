@@ -2,7 +2,6 @@ package com.tavernmanager.Tavern.Manager.controllers;
 
 import com.tavernmanager.Tavern.Manager.models.FoodModel;
 import com.tavernmanager.Tavern.Manager.services.FoodService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +18,11 @@ import java.util.Optional;
 @EntityListeners(AuditingEntityListener.class)
 public class FoodController {
 
-    @Autowired
     private FoodService foodService;
+
+    public FoodController(FoodService foodService) {
+        this.foodService = foodService;
+    }
 
     @PostMapping
     public ResponseEntity<Object> insertFood(@RequestBody FoodModel food){

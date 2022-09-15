@@ -24,7 +24,7 @@ public class FoodModel {
     private float mass;
 
     @Column(nullable = false)
-    @Positive(message = "number has to be greater than zero")
+    @PositiveOrZero(message = "number has to be greater than zero")
     private int stockAmount;
 
     @Column(length = 400)

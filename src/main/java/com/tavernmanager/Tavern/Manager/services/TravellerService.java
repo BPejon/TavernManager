@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class TravellerService {
 
-    @Autowired
     private TravellerRepository travellerRepository;
+
+    public TravellerService(TravellerRepository travellerRepository) {
+        this.travellerRepository = travellerRepository;
+    }
+
     public TravellerModel createTraveller(TravellerModel traveller) {
         return travellerRepository.save(traveller);
     }
@@ -32,7 +36,7 @@ public class TravellerService {
 
     public TravellerModel addDrinkInventory(TravellerModel traveller, DrinksModel drink) {
         traveller.addDrinksInInventory(drink);
-        //Adicionar no drinks tmb??? seraw?
+
         return travellerRepository.save(traveller);
     }
 }
