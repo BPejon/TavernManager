@@ -31,7 +31,7 @@ public class ShopController {
     }
 
     @RequestMapping(value = {"/{travellerName}/buydrink/{drinkName}","/{travellerName}/buydrink/{drinkName}/{items}"}, method = RequestMethod.PUT)
-    private ResponseEntity<Object> buyDrink(@PathVariable String travellerName, @PathVariable String drinkName, @PathVariable Optional<Integer> items){
+    public ResponseEntity<Object> buyDrink(@PathVariable String travellerName, @PathVariable String drinkName, @PathVariable Optional<Integer> items){
         int itemsNumber;
         if(!items.isPresent()) {
             itemsNumber = ONE_ITEM;
@@ -65,7 +65,7 @@ public class ShopController {
        //É possivel fazer urls opicionais??
         //Além disso seria uma boa prática?? Pelo menos n precisaria reutilizar muito código
      @RequestMapping(value = {"/{travellerName}/buyfood/{foodName}/{items}", "/{travellerName}/buyfood/{foodName}"}, method = RequestMethod.PUT)
-    private ResponseEntity<Object> buyFood(@PathVariable String travellerName, @PathVariable String foodName, @PathVariable Optional<Integer> items){
+    public ResponseEntity<Object> buyFood(@PathVariable String travellerName, @PathVariable String foodName, @PathVariable Optional<Integer> items){
         int itemsNumber;
         if(!items.isPresent()) {
             itemsNumber = ONE_ITEM;
@@ -94,6 +94,45 @@ public class ShopController {
         return ResponseEntity.status(HttpStatus.OK).body(travellerService.addInInventory(traveller.get(), food.get()));
    }
 
+    @DeleteMapping("/{travellerName}/sellfood/{foodName}")
+    public ResponseEntity<Object> sellFood(@PathVariable String travellerName, @PathVariable String foodName){
+        Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
+        if(!traveller.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(travellerName + " not found!");
+        }
+        Optional<FoodModel> food = foodService.getFood(foodName);
+        if(!food.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(foodName + " not found!");
+        }
+
+        traveller.get().addCoins(food.get().getPrice());
+
+        food.get().reStock(ONE_ITEM);
+        foodService.insertFood(food.get());
+
+        return ResponseEntity.status(HttpStatus.OK).body(travellerService.removeFromInventory(traveller.get(), food.get()));
+    }
+
+
+    @DeleteMapping("/{travellerName}/buydrink/{drinkName}")
+    public ResponseEntity<Object> sellDrink(@PathVariable String travellerName, @PathVariable String drinkName){
+        Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
+        if(!traveller.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(travellerName + " not found!");
+
+        Optional<DrinksModel> drink = drinksService.getDrink(drinkName);
+        if(!drink.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(drinkName + " Not Found!");
+
+        //Tirar coins do traveller
+        int coins = traveller.get().addCoins(drink.get().getPrice());
+
+        //tirar do estoque
+        int stock = drink.get().addStock(ONE_ITEM);
+        drinksService.insertDrink(drink.get());
+
+        return ResponseEntity.status(HttpStatus.OK).body(travellerService.removeFromInventory(traveller.get(), drink.get()));
+    }
 
 
 //    @PutMapping("/{travellerName}/buyfood/{foodName}")

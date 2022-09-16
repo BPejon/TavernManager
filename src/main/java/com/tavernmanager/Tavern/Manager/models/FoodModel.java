@@ -97,4 +97,8 @@ public class FoodModel {
             return -1;
         return this.stockAmount -= stockChange;
     }
+
+    public int reStock(int stockChange) {
+        return this.stockAmount += stockChange;
+    }
 }
