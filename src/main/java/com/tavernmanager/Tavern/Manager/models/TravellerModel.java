@@ -1,14 +1,17 @@
 package com.tavernmanager.Tavern.Manager.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 @Entity
+@AllArgsConstructor
+@Builder
 @Table(name = "TRAVELLER")
 public class TravellerModel {
     @Id
