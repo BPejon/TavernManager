@@ -100,4 +100,8 @@ public class DrinksModel {
             return -1;
         return this.stockAmount -= stockChange;
     }
+
+    public int addStock(int stockChange) {
+        return this.stockAmount += stockChange;
+    }
 }

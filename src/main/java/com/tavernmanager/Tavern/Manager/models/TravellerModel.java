@@ -126,4 +126,16 @@ public class TravellerModel {
     public void addFoodInInventory(FoodModel food) {
         foodInventory.add(food);
     }
+
+    public int addCoins(int price) {
+        return this.coins += price;
+    }
+
+    public void removeFoodFromInventory(FoodModel food) {
+        foodInventory.remove(food);
+    }
+
+    public void removeDrinkFromInventory(DrinksModel drink) {
+        this.drinksInventory.remove(drink);
+    }
 }

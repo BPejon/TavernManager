@@ -42,8 +42,19 @@ public class TravellerService {
         return travellerRepository.save(traveller);
     }
 
+    //é uma boa pratica deixar com mesmo nome ou melhor com AddFoodInInventory?
     public TravellerModel addInInventory(TravellerModel traveller, FoodModel food) {
         traveller.addFoodInInventory(food);
+        return travellerRepository.save(traveller);
+    }
+
+    public Object removeFromInventory(TravellerModel traveller, FoodModel food) {
+        traveller.removeFoodFromInventory(food);
+        return travellerRepository.save(traveller);
+    }
+
+    public Object removeFromInventory(TravellerModel traveller, DrinksModel drink) {
+        traveller.removeDrinkFromInventory(drink);
         return travellerRepository.save(traveller);
     }
 }
