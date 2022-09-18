@@ -30,8 +30,16 @@ public class TravellerTest {
 
     @Test
     void saveOneTraveller(){
+        //Arrange
         final var traveller = TravellerModel.builder().name("Firekeeper").province("Firelink Shrine").classType("Priest").level(15).coins(20).build();
         when(travellerRepository.save(any(TravellerModel.class))).thenReturn(traveller);
+
+        //act
+        final var actual = travellerService.createTraveller(new TravellerModel());
+
+        //assert
+        //assertThat(actual).usingRecursiveComparison().isEqualTo(st);
+
 
     }
 }
