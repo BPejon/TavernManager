@@ -2,6 +2,9 @@ package com.tavernmanager.Tavern.Manager.controllers;
 
 import com.tavernmanager.Tavern.Manager.models.TravellerModel;
 import com.tavernmanager.Tavern.Manager.services.TravellerService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,7 @@ public class TravellerController {
         this.travellerService = travellerService;
     }
 
+    @Operation(summary = "Create a new Traveller")
     @PostMapping
     public ResponseEntity<Object> createTraveller(@RequestBody TravellerModel traveller){
         TravellerModel newTraveller = travellerService.createTraveller(traveller);

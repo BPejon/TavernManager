@@ -1,5 +1,7 @@
 package com.tavernmanager.Tavern.Manager.models;
 
+
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
