@@ -29,7 +29,7 @@ public class InventoryController {
     }
 
     @PutMapping("/{travellerName}/use/{foodName}")
-    public ResponseEntity<Object> useItem(@PathVariable String travellerName, @PathVariable String foodName ){
+    public ResponseEntity<Object> useFood(@PathVariable String travellerName, @PathVariable String foodName ){
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
         if(!traveller.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(travellerName + " not found!");
@@ -39,9 +39,21 @@ public class InventoryController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(foodName + " not found!");
         }
 
-        int stock = food.get().discountStock(ONE_ITEM);
+        return ResponseEntity.status(HttpStatus.OK).body(travellerService.removeFromInventory(traveller.get(), food.get()));
+    }
 
+    @PutMapping("/{travellerName}/use/{drinkName}")
+    public ResponseEntity<Object> useDrink(@PathVariable String travellerName, @PathVariable String drinkName) {
+        Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
+        if (!traveller.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(travellerName + " not found!");
+        }
+        Optional<FoodModel> drink = foodService.getFood(drinkName);
+        if (!drink.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(drinkName + " not found!");
+        }
 
-        return ResponseEntity.status(HttpStatus.OK).body(travellerService.addInInventory(traveller.get(), food.get()));
+        return ResponseEntity.status(HttpStatus.OK).body(travellerService.removeFromInventory(traveller.get(), drink.get()));
+
     }
 }
