@@ -1,6 +1,8 @@
 package com.tavernmanager.Tavern.Manager.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
@@ -9,6 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Builder
+@AllArgsConstructor
 @Table(name = "DRINKS")
 public class DrinksModel {
 
