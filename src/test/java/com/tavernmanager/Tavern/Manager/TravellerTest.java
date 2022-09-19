@@ -44,6 +44,10 @@ public class TravellerTest {
         final var expectedTraveller = TravellerModel.builder().name("FireKeeper").province("Firelink Shrine").classType("Priest").level(15).coins(20).build();
         when(travellerRepository.save(any(TravellerModel.class))).thenReturn(expectedTraveller);
 
+        //Quando for salvo qualquer travelller no repositório, retorne o expectedTraveller
+        //Dai dps, quando utiliza o service pra salvar um novo traveller, o repositório é chamado e ativa a linha acima, então retorna o expectedTraveller q queremos
+        //Dai depois é ´so comparar o experado com o atual  pra ver se estão iguais
+
         //act
         final var actual = travellerService.createTraveller(new TravellerModel());
 
@@ -56,14 +60,15 @@ public class TravellerTest {
     @Test
     void should_find_and_return_one_student(){
         //Arrange
-        final var expectedTraveller = TravellerModel.builder().name("FireKeeper").province("Firelink Shrine").classType("Priest").level(15).coins(20).build();
-        when(travellerRepository.findById(anyString())).thenReturn(Optional.of(expectedTraveller));
+        final var expectedTraveller = Optional.of(TravellerModel.builder().name("FireKeeper")
+                .province("Firelink Shrine").classType("Priest").level(15).coins(20).build());
+        when(travellerRepository.findById(anyString())).thenReturn(expectedTraveller);
 
         //Act
-        final var actual = travellerService.getTraveller(expectedTraveller.getName());
+        final var actual = travellerService.getTraveller(anyString());
 
         //Assert
-        assertThat(actual.get()).usingRecursiveComparison().isEqualTo(expectedTraveller);
+        assertThat(actual).usingRecursiveComparison().isEqualTo(expectedTraveller);
         verify(travellerRepository,times(1)).findById(anyString());
         verifyNoMoreInteractions(travellerRepository);
     }
@@ -90,7 +95,7 @@ public class TravellerTest {
     void should_delete_one_traveller(){
         doNothing().when(travellerRepository).deleteById(anyString());
 
-        travellerService.deleteTraveller("FireKeeper");
+        travellerService.deleteTraveller(anyString());
 
         verify(travellerRepository,times(1)).deleteById(anyString());
         verifyNoMoreInteractions(travellerRepository);
