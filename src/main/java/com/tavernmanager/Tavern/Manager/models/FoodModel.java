@@ -1,10 +1,16 @@
 package com.tavernmanager.Tavern.Manager.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Set;
 
 @Entity
+@Builder
+@AllArgsConstructor
 @Table(name = "FOOD")
 public class FoodModel {
 
