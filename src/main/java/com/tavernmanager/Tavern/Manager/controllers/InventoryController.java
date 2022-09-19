@@ -1,5 +1,6 @@
 package com.tavernmanager.Tavern.Manager.controllers;
 
+import com.tavernmanager.Tavern.Manager.models.DrinksModel;
 import com.tavernmanager.Tavern.Manager.models.FoodModel;
 import com.tavernmanager.Tavern.Manager.models.TravellerModel;
 import com.tavernmanager.Tavern.Manager.services.DrinksService;
@@ -30,7 +31,7 @@ public class InventoryController {
     }
 
     @Operation(summary = "Consumes the food from Inventory")
-    @PutMapping("/{travellerName}/use/{foodName}")
+    @PutMapping("/{travellerName}/eat/{foodName}")
     public ResponseEntity<Object> useFood(@PathVariable String travellerName, @PathVariable String foodName ){
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
         if(!traveller.isPresent()){
@@ -45,13 +46,13 @@ public class InventoryController {
     }
 
     @Operation(summary = "Consumes Drink from Inventory")
-    @PutMapping("/{travellerName}/use/{drinkName}")
+    @PutMapping("/{travellerName}/drink/{drinkName}")
     public ResponseEntity<Object> useDrink(@PathVariable String travellerName, @PathVariable String drinkName) {
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
         if (!traveller.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(travellerName + " not found!");
         }
-        Optional<FoodModel> drink = foodService.getFood(drinkName);
+        Optional<DrinksModel> drink = drinksService.getDrink(drinkName);
         if (!drink.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(drinkName + " not found!");
         }
