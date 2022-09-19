@@ -6,6 +6,7 @@ import com.tavernmanager.Tavern.Manager.models.TravellerModel;
 import com.tavernmanager.Tavern.Manager.services.DrinksService;
 import com.tavernmanager.Tavern.Manager.services.FoodService;
 import com.tavernmanager.Tavern.Manager.services.TravellerService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,7 @@ public class ShopController {
         this.foodService = foodService;
     }
 
+    @Operation(summary = "Buy one or more Drinks from shop and put on Travellers' Inventory")
     @RequestMapping(value = {"/{travellerName}/buydrink/{drinkName}","/{travellerName}/buydrink/{drinkName}/{items}"}, method = RequestMethod.PUT)
     public ResponseEntity<Object> buyDrink(@PathVariable String travellerName, @PathVariable String drinkName, @PathVariable Optional<Integer> items){
         int itemsNumber;
@@ -64,7 +66,9 @@ public class ShopController {
 
        //É possivel fazer urls opicionais??
         //Além disso seria uma boa prática?? Pelo menos n precisaria reutilizar muito código
-     @RequestMapping(value = {"/{travellerName}/buyfood/{foodName}/{items}", "/{travellerName}/buyfood/{foodName}"}, method = RequestMethod.PUT)
+
+    @Operation(summary = "Buy one or more Food and save into Travallers inventory")
+    @RequestMapping(value = {"/{travellerName}/buyfood/{foodName}/{items}", "/{travellerName}/buyfood/{foodName}"}, method = RequestMethod.PUT)
     public ResponseEntity<Object> buyFood(@PathVariable String travellerName, @PathVariable String foodName, @PathVariable Optional<Integer> items){
         int itemsNumber;
         if(!items.isPresent()) {
@@ -94,6 +98,7 @@ public class ShopController {
         return ResponseEntity.status(HttpStatus.OK).body(travellerService.addInInventory(traveller.get(), food.get()));
    }
 
+    @Operation(summary = "Sell a food from Travellers to the Store")
     @DeleteMapping("/{travellerName}/sellfood/{foodName}")
     public ResponseEntity<Object> sellFood(@PathVariable String travellerName, @PathVariable String foodName){
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
@@ -113,7 +118,7 @@ public class ShopController {
         return ResponseEntity.status(HttpStatus.OK).body(travellerService.removeFromInventory(traveller.get(), food.get()));
     }
 
-
+    @Operation(summary = "Sell a drink from Traveller to the Shop")
     @DeleteMapping("/{travellerName}/buydrink/{drinkName}")
     public ResponseEntity<Object> sellDrink(@PathVariable String travellerName, @PathVariable String drinkName){
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);

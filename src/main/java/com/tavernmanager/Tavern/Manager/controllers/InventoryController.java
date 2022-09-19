@@ -5,6 +5,7 @@ import com.tavernmanager.Tavern.Manager.models.TravellerModel;
 import com.tavernmanager.Tavern.Manager.services.DrinksService;
 import com.tavernmanager.Tavern.Manager.services.FoodService;
 import com.tavernmanager.Tavern.Manager.services.TravellerService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class InventoryController {
         this.foodService = foodService;
     }
 
+    @Operation(summary = "Consumes the food from Inventory")
     @PutMapping("/{travellerName}/use/{foodName}")
     public ResponseEntity<Object> useFood(@PathVariable String travellerName, @PathVariable String foodName ){
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
@@ -42,6 +44,7 @@ public class InventoryController {
         return ResponseEntity.status(HttpStatus.OK).body(travellerService.removeFromInventory(traveller.get(), food.get()));
     }
 
+    @Operation(summary = "Consumes Drink from Inventory")
     @PutMapping("/{travellerName}/use/{drinkName}")
     public ResponseEntity<Object> useDrink(@PathVariable String travellerName, @PathVariable String drinkName) {
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);

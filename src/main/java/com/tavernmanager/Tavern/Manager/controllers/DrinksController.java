@@ -2,6 +2,7 @@ package com.tavernmanager.Tavern.Manager.controllers;
 
 import com.tavernmanager.Tavern.Manager.models.DrinksModel;
 import com.tavernmanager.Tavern.Manager.services.DrinksService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ public class DrinksController {
         this.drinksService = drinksService;
     }
 
+    @Operation(summary = "Save drink in the Shop")
     @PostMapping
     public ResponseEntity<Object> insertDrink(@RequestBody DrinksModel drink){
         DrinksModel newDrink = drinksService.insertDrink(drink);
@@ -29,6 +31,7 @@ public class DrinksController {
         return ResponseEntity.created(uri).build();
     }
 
+    @Operation(summary = "Retrieves drink from Shop")
     @GetMapping("/{name}")
     public ResponseEntity<Object> getDrink(@PathVariable String name){
         Optional<DrinksModel> drink = drinksService.getDrink(name);
@@ -38,12 +41,14 @@ public class DrinksController {
         return ResponseEntity.status(HttpStatus.OK).body(drink);
     }
 
+    @Operation(summary = "Get all drinks from Shop")
     @GetMapping
     public ResponseEntity<List<DrinksModel>> getAllDrinks(){
         List<DrinksModel> allDrinks = drinksService.getAllDrinks();
         return ResponseEntity.status(HttpStatus.OK).body(allDrinks);
     }
 
+    @Operation(summary = "Update drinks information")
     @PutMapping("/{drinkName}") // Quando coloco outro nome ele cria ao inves de atualizar
     public ResponseEntity<Object> updateDrink (@PathVariable String drinkName, @RequestBody DrinksModel drink){
         Optional<DrinksModel> updateDrink = drinksService.getDrink(drinkName);
@@ -57,6 +62,7 @@ public class DrinksController {
         return ResponseEntity.status(HttpStatus.OK).body(drinksService.insertDrink(drink));
     }
 
+    @Operation(summary = "Delete a drink")
     @DeleteMapping("/{drinkName}")
     public ResponseEntity<Object> deleteDrink(@PathVariable String drinkName){
         //Check if exists
