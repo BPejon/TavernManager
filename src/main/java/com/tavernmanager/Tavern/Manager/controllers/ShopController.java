@@ -119,7 +119,7 @@ public class ShopController {
     }
 
     @Operation(summary = "Sell a drink from Traveller to the Shop")
-    @DeleteMapping("/{travellerName}/buydrink/{drinkName}")
+    @DeleteMapping("/{travellerName}/selldrink/{drinkName}")
     public ResponseEntity<Object> sellDrink(@PathVariable String travellerName, @PathVariable String drinkName){
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
         if(!traveller.isPresent())

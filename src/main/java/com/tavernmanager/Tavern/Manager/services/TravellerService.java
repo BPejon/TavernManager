@@ -5,6 +5,8 @@ import com.tavernmanager.Tavern.Manager.models.FoodModel;
 import com.tavernmanager.Tavern.Manager.models.TravellerModel;
 import com.tavernmanager.Tavern.Manager.repositories.TravellerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +33,9 @@ public class TravellerService {
         return travellerRepository.findAll();
     }
 
+    public Page<TravellerModel> getAllTravellers(Pageable pageable){
+        return travellerRepository.findAll(pageable);
+    }
     public void deleteTraveller(String name) {
         travellerRepository.deleteById(name);
     }

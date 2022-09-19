@@ -2,6 +2,8 @@ package com.tavernmanager.Tavern.Manager.services;
 
 import com.tavernmanager.Tavern.Manager.models.FoodModel;
 import com.tavernmanager.Tavern.Manager.repositories.FoodRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +29,9 @@ public class FoodService {
 
     public List<FoodModel> getAllFood() {
         return foodRepository.findAll();
+    }
+    public Page<FoodModel> getAllFood(Pageable pageable){
+        return foodRepository.findAll(pageable);
     }
 
     public void delete(String name) {

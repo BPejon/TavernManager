@@ -5,7 +5,11 @@ import com.tavernmanager.Tavern.Manager.services.TravellerService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,8 +53,8 @@ public class TravellerController {
 
     @Operation(summary = "Find all Travellers")
     @GetMapping
-    public ResponseEntity<List<TravellerModel>> getAllTraveller(){
-        List<TravellerModel> allTravellers = travellerService.getAllTravellers();
+    public ResponseEntity<Page<TravellerModel>> getAllTraveller(@PageableDefault(page = 0, size = 5, sort= "name", direction = Sort.Direction.ASC) Pageable pageable){
+        Page<TravellerModel> allTravellers = travellerService.getAllTravellers(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(allTravellers);
     }
 

@@ -3,7 +3,10 @@ package com.tavernmanager.Tavern.Manager.controllers;
 import com.tavernmanager.Tavern.Manager.models.FoodModel;
 import com.tavernmanager.Tavern.Manager.services.FoodService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,8 +48,8 @@ public class FoodController {
 
     @Operation(summary = "Get all food from the Store")
     @GetMapping
-    public ResponseEntity<List<FoodModel>> getAllFood(){
-        List<FoodModel> allFoods = foodService.getAllFood();
+    public ResponseEntity<Page<FoodModel>> getAllFood(@PageableDefault Pageable pageable){
+        Page<FoodModel> allFoods = foodService.getAllFood(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(allFoods);
     }
 
