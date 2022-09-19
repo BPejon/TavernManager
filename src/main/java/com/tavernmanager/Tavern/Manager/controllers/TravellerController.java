@@ -2,6 +2,9 @@ package com.tavernmanager.Tavern.Manager.controllers;
 
 import com.tavernmanager.Tavern.Manager.models.TravellerModel;
 import com.tavernmanager.Tavern.Manager.services.TravellerService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,7 @@ public class TravellerController {
         this.travellerService = travellerService;
     }
 
+    @Operation(summary = "Create a new Traveller")
     @PostMapping
     public ResponseEntity<Object> createTraveller(@RequestBody TravellerModel traveller){
         TravellerModel newTraveller = travellerService.createTraveller(traveller);
@@ -33,6 +37,7 @@ public class TravellerController {
         return ResponseEntity.created(uri).build();
     }
 
+    @Operation(summary = "Find for one Traveller")
     @GetMapping(value = "/{name}")
     public ResponseEntity<Object> getTraveller(@PathVariable String name){
         Optional<TravellerModel> traveller = travellerService.getTraveller(name);
@@ -42,14 +47,16 @@ public class TravellerController {
         return ResponseEntity.status(HttpStatus.OK).body(traveller);
     }
 
+    @Operation(summary = "Find all Travellers")
     @GetMapping
     public ResponseEntity<List<TravellerModel>> getAllTraveller(){
         List<TravellerModel> allTravellers = travellerService.getAllTravellers();
         return ResponseEntity.status(HttpStatus.OK).body(allTravellers);
     }
 
+    @Operation(summary = "Update Traveller information")
     @PutMapping("/{name}")
-    public ResponseEntity<Object> updateTraveler(@PathVariable String name, @RequestBody TravellerModel traveller){
+    public ResponseEntity<Object> updateTraveller(@PathVariable String name, @RequestBody TravellerModel traveller){
         Optional<TravellerModel> updateTraveller = travellerService.getTraveller(name);
         if(!updateTraveller.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(traveller + " Not Found");
@@ -57,6 +64,7 @@ public class TravellerController {
         return ResponseEntity.status(HttpStatus.OK).body(travellerService.createTraveller(traveller));
     }
 
+    @Operation(summary = "Delete Traveller")
     @DeleteMapping("/{name}")
     public ResponseEntity<Object> deleteTraveller(@PathVariable String name){
         Optional<TravellerModel> traveller = travellerService.getTraveller(name);

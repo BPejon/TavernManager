@@ -2,6 +2,7 @@ package com.tavernmanager.Tavern.Manager.controllers;
 
 import com.tavernmanager.Tavern.Manager.models.FoodModel;
 import com.tavernmanager.Tavern.Manager.services.FoodService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ public class FoodController {
         this.foodService = foodService;
     }
 
+    @Operation(summary = "Insert a new Food")
     @PostMapping
     public ResponseEntity<Object> insertFood(@RequestBody FoodModel food){
         FoodModel newFood = foodService.insertFood(food);
@@ -31,6 +33,7 @@ public class FoodController {
         return ResponseEntity.created(uri).build();
     }
 
+    @Operation(summary = "Retrieves a Food from the store")
     @GetMapping("/{name}")
     public ResponseEntity<Object> getFood(@PathVariable String name){
         Optional<FoodModel> food = foodService.getFood(name);
@@ -40,12 +43,14 @@ public class FoodController {
         return ResponseEntity.status(HttpStatus.OK).body(food);
     }
 
+    @Operation(summary = "Get all food from the Store")
     @GetMapping
     public ResponseEntity<List<FoodModel>> getAllFood(){
         List<FoodModel> allFoods = foodService.getAllFood();
         return ResponseEntity.status(HttpStatus.OK).body(allFoods);
     }
 
+    @Operation(summary = "Update Food information")
     @PutMapping("/{foodName}")
     public ResponseEntity<Object> updateFood(@PathVariable String foodName, @RequestBody FoodModel food){
         Optional<FoodModel> updateFood = foodService.getFood(foodName);
@@ -54,6 +59,7 @@ public class FoodController {
         return ResponseEntity.status(HttpStatus.OK).body(foodService.insertFood(food));
     }
 
+    @Operation(summary = "Delete Food from Shop")
     @DeleteMapping("/{foodName}")
     public ResponseEntity<Object> deleteFood(@PathVariable String foodName){
         Optional<FoodModel> updateFood = foodService.getFood(foodName);
