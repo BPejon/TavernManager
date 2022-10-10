@@ -67,6 +67,8 @@ public class ShopController {
        //É possivel fazer urls opicionais??
         //Além disso seria uma boa prática?? Pelo menos n precisaria reutilizar muito código
 
+    //Quantidade normalmente é passada no Body por motivos de simplificação de URL( imagine diversos parametros) além de segurança do código
+    //pq o Json é criptografado
     @Operation(summary = "Buy one or more Food and save into Travallers inventory")
     @RequestMapping(value = {"/{travellerName}/buyfood/{foodName}/{items}", "/{travellerName}/buyfood/{foodName}"}, method = RequestMethod.PUT)
     public ResponseEntity<Object> buyFood(@PathVariable String travellerName, @PathVariable String foodName, @PathVariable Optional<Integer> items){

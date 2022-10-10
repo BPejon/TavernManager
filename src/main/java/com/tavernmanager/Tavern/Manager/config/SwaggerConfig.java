@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 import java.util.ArrayList;
 
+//Fazer listas do que apresentar
 @Configuration
 public class SwaggerConfig{
 
