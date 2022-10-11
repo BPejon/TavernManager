@@ -1,0 +1,29 @@
+img {
+    height: 3rem;
+
+}
+
+.header{
+    justify-content: center;
+    height: 11%;
+    background-color: aliceblue;
+}
+
+/*Colocar borda*/
+.sideBar{
+    border-radius: 2px;
+    border: 3rem;
+    border-left: 2px;
+    border-right: 5px;
+    border-color: rgb(212, 23, 23);
+}
+
+.header h1{
+    font-size: 1.7rem;
+    padding-left: 2.5rem;
+}
+
+span{
+    display: flex;
+    align-items: center;
+}
