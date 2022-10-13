@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +19,6 @@ import {MatCardModule} from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { BeveragesReadComponent } from './components/views/beverages/beverages-read/beverages-read.component';
 import { FoodReadComponent } from './components/views/food/food-read/food-read.component';
-
 
 
 
@@ -39,7 +41,8 @@ import { FoodReadComponent } from './components/views/food/food-read/food-read.c
     MatListModule,
     MatCardModule,
     AppRoutingModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

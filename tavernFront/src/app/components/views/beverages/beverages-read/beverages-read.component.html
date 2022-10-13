@@ -4,9 +4,9 @@
     </div>
 
     <div class="mat-elevation-z8 contentTable">
-        <table mat-table class="table">
+        <table mat-table [dataSource] = "beverages" class="table">
             <!-- Position Column -->
-            <ng-container matColumnDef="name">
+            <ng-container matColumnDef="name" >
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef= "let row"> {{row.name}} </td>
             </ng-container>

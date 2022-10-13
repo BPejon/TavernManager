@@ -4,5 +4,4 @@ export interface Beverages{
     bottleSize: number;
     stockAmount: number;
     description?: String;
-
 }
