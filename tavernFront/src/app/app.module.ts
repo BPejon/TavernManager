@@ -15,6 +15,7 @@ import { HomeComponent } from './components/views/home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { BeveragesReadComponent } from './components/views/beverages/beverages-read/beverages-read.component';
+import { FoodReadComponent } from './components/views/food/food-read/food-read.component';
 
 
 
@@ -26,7 +27,8 @@ import { BeveragesReadComponent } from './components/views/beverages/beverages-r
     FooterComponent,
     NavComponent,
     HomeComponent,
-    BeveragesReadComponent
+    BeveragesReadComponent,
+    FoodReadComponent
   ],
   imports: [
     BrowserModule,
