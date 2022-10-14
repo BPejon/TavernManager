@@ -45,4 +45,12 @@
         </table>
       </div>
 
+      <mat-paginator class="mat-elevation-z8" 
+      [length] ="page.totalElements"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 15]"
+      aria-label="Select page">
+</mat-paginator>
+
+      
 </div>

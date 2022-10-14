@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Beverages } from './beverages.model';
+import { Beverages, Page } from './beverages.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,9 @@ export class BeveragesService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<Beverages[]>{
-    const url = `${this.baseUrl}/drinks`;
-    return this.http.get<Beverages[]>(url);
+  //Find all com paginação -> param para paginação
+  findAll(pageNumber: number, pageSize: number): Observable<Page>{
+    const url = `${this.baseUrl}/drinks?page=${pageNumber}&size=${pageSize}`;
+    return this.http.get<any>(url);
   }
 }

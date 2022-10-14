@@ -19,6 +19,8 @@ import {MatCardModule} from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { BeveragesReadComponent } from './components/views/beverages/beverages-read/beverages-read.component';
 import { FoodReadComponent } from './components/views/food/food-read/food-read.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -42,7 +44,9 @@ import { FoodReadComponent } from './components/views/food/food-read/food-read.c
     MatCardModule,
     AppRoutingModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
