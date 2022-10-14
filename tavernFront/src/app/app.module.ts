@@ -21,6 +21,7 @@ import { BeveragesReadComponent } from './components/views/beverages/beverages-r
 import { FoodReadComponent } from './components/views/food/food-read/food-read.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 
 
@@ -46,7 +47,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatTableModule,
     HttpClientModule,
     NgxPaginationModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

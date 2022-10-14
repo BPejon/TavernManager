@@ -4,7 +4,7 @@
     </div>
 
     <div class="tablecontent mat-elevation-z8">
-        <table mat-table class="table " >
+        <table mat-table class="table" [dataSource]="food" >
             <!-- Position Column -->
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -44,6 +44,14 @@
           </table>
           
 
+          <mat-paginator class = "mat-elevation-z8" 
+          [length]=" page.totalElements"
+          [pageSize] = "5"
+          [pageSizeOptions]="[5,10,15]"
+          aria-label="Select Page">
+
+
+          </mat-paginator>
     </div>
 
 
