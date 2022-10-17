@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { FoodService } from '../food.service';
-import { Food, FoodPage } from '../food.model';
-import { MatTableDataSource } from '@angular/material/table';
+import { Food, FoodPage, Pageable, Sort } from '../food.model';
 
 @Component({
   selector: 'app-food-read',
@@ -15,8 +14,23 @@ export class FoodReadComponent implements OnInit, AfterViewInit{
   DEFAULT_PAGE_SIZE: number = 5;
   displayedColumns: string[] = ['name', 'price', 'weight', 'stockAmount', 'description', 'actions'];
 
+  //Inicializar tudo da Page pra parar o erro
   food : Food[] = [];
-  page !: FoodPage;
+  pageable !: Pageable;
+  sort !: Sort;
+  page : FoodPage = {
+    content: this.food,
+    pageable: this.pageable,
+    last: true,
+    totalPages: 0,
+    totalElements: 0,
+    size: 0,
+    number: 0,
+    sort: this.sort,
+    first: true,
+    numberOfElements:0,
+    empty: true,
+  };
 
   @ViewChild(MatPaginator)
   paginator !: MatPaginator;
@@ -25,8 +39,6 @@ export class FoodReadComponent implements OnInit, AfterViewInit{
   constructor(private service: FoodService) { }
 
   ngOnInit(): void {
-    console.log(this.page?.totalElements);
-
     this.findAll(this.DEFAULT_PAGE_INDEX, this.DEFAULT_PAGE_SIZE);
 
 
@@ -35,8 +47,6 @@ export class FoodReadComponent implements OnInit, AfterViewInit{
   ngAfterViewInit(): void {
     this.paginator.page.subscribe(ans =>{
       this.findAll(ans.pageIndex, ans.pageSize);
-      console.log(this.page?.totalElements);
-
     })
     
   }
@@ -46,9 +56,6 @@ export class FoodReadComponent implements OnInit, AfterViewInit{
     this.service.findAll(pageIndex, pageSize).subscribe(ans=> {
       this.page = ans;
       this.food = this.page.content;
-      console.log(this.page?.totalElements);
-
-
     })
   }
 

@@ -22,7 +22,12 @@ import { FoodReadComponent } from './components/views/food/food-read/food-read.c
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
-
+import {MatButtonModule} from '@angular/material/button';
+import { BeveragesCreateComponent } from './components/views/beverages/beverages-create/beverages-create.component';
+import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -33,7 +38,8 @@ import {MatSortModule} from '@angular/material/sort';
     NavComponent,
     HomeComponent,
     BeveragesReadComponent,
-    FoodReadComponent
+    FoodReadComponent,
+    BeveragesCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,12 @@ import {MatSortModule} from '@angular/material/sort';
     HttpClientModule,
     NgxPaginationModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatButtonModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

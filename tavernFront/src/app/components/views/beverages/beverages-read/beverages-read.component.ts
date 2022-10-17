@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { Beverages, Page } from '../beverages.model';
+import { Beverages, Page, Pageable, Sort } from '../beverages.model';
 import { BeveragesService } from '../beverages.service';
 
 @Component({
@@ -16,12 +17,27 @@ export class BeveragesReadComponent implements OnInit, AfterViewInit {
   DEFAULT_PAGE_SIZE: number = 10;
 
   beverages : Beverages[] = [];
-  page !: Page;
+  pageable !: Pageable;
+  sort !: Sort;
+
+  page : Page ={
+    content: this.beverages,
+    pageable: this.pageable,
+    last: false,
+    totalPages: 0,
+    totalElements: 0,
+    size: 0,
+    number:0,
+    sort: this.sort,
+    first: false,
+    numberOfElements: 0,
+    empty: false
+  };
 
   @ViewChild(MatPaginator)
   paginator !: MatPaginator;
   
-  constructor(private service: BeveragesService) { }
+  constructor(private service: BeveragesService, private router: Router) { }
 
   ngOnInit(): void {
     this.findAll(this.DEFAULT_PAGE, this.DEFAULT_PAGE_SIZE);
@@ -45,5 +61,10 @@ export class BeveragesReadComponent implements OnInit, AfterViewInit {
       this.page = answer;
       this.beverages = this.page.content;
     })
+  }
+
+  navigateToBeveragesCreate(){
+    this.router.navigate(["drinks/create"]);
+
   }
 }
