@@ -5,6 +5,7 @@ import { HomeComponent } from './components/views/home/home.component';
 import { BeveragesReadComponent } from './components/views/beverages/beverages-read/beverages-read.component';
 import { FoodReadComponent } from './components/views/food/food-read/food-read.component';
 import { BeveragesCreateComponent } from './components/views/beverages/beverages-create/beverages-create.component';
+import { BeveragesUpdateComponent } from './components/views/beverages/beverages-update/beverages-update.component';
 
 
 const routes: Routes = [
@@ -21,9 +22,13 @@ const routes: Routes = [
     component: BeveragesCreateComponent
   },
   {
+    path:"drinks/update/:id",
+    component: BeveragesUpdateComponent
+  },
+  {
     path: "food",
     component: FoodReadComponent
-  }
+  },
 
 ];
 

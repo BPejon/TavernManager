@@ -25,6 +25,15 @@ export class BeveragesService {
     return this.http.post<Beverages>(url, beverage);
   }
 
+  update(beverage: Beverages): Observable<Beverages>{
+    const url = `${this.baseUrl}/drinks/${beverage.name}`;
+    return this.http.put<Beverages>(url, beverage);
+  }
+
+  findById(id: String): Observable<Beverages>{
+    const url = `${this.baseUrl}/drinks/${id}`;
+    return this.http.get<Beverages>(url);
+  }
   message(str: String): void{
     this.snackBar.open(`${str}`, 'OK', {
       horizontalPosition: 'center',

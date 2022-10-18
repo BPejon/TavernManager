@@ -28,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { BeveragesUpdateComponent } from './components/views/beverages/beverages-update/beverages-update.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HomeComponent,
     BeveragesReadComponent,
     FoodReadComponent,
-    BeveragesCreateComponent
+    BeveragesCreateComponent,
+    BeveragesUpdateComponent
   ],
   imports: [
     BrowserModule,
