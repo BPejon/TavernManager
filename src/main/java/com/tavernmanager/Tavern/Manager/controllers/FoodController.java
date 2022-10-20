@@ -57,20 +57,20 @@ public class FoodController {
     @PutMapping("/{foodName}")
     public ResponseEntity<Object> updateFood(@PathVariable String foodName, @RequestBody FoodModel food){
         Optional<FoodModel> updateFood = foodService.getFood(foodName);
-        if(!updateFood.isPresent())
+        if(updateFood.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(foodName + "Not Found");
         return ResponseEntity.status(HttpStatus.OK).body(foodService.insertFood(food));
     }
 
     @Operation(summary = "Delete Food from Shop")
     @DeleteMapping("/{foodName}")
-    public ResponseEntity<Object> deleteFood(@PathVariable String foodName){
+    public ResponseEntity<Void> deleteFood(@PathVariable String foodName){
         Optional<FoodModel> updateFood = foodService.getFood(foodName);
-        if(!updateFood.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(foodName + " Not Found!");
+        if(updateFood.isEmpty())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
         foodService.delete(updateFood.get().getName());
-        return ResponseEntity.status(HttpStatus.OK).body(foodName+" Deleted Successfully");
+        return ResponseEntity.noContent().build();
 
     }
 }

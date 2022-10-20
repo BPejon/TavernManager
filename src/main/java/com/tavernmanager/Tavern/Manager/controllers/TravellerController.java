@@ -73,9 +73,14 @@ public class TravellerController {
     public ResponseEntity<Object> deleteTraveller(@PathVariable String name){
         Optional<TravellerModel> traveller = travellerService.getTraveller(name);
         if(!traveller.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(name + " not Found!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
         travellerService.deleteTraveller(traveller.get().getName());
-        return ResponseEntity.status(HttpStatus.OK).body(name + " Removed successfully");
+        return ResponseEntity.noContent().build();
+
+        //Erro na formatação no front-> Deixei sem mensagem de erro
+        // return ResponseEntity.status(HttpStatus.NOT_FOUND).body(name + " not Found!")
+
     }
+
 }
