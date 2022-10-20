@@ -31,6 +31,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BeveragesUpdateComponent } from './components/views/beverages/beverages-update/beverages-update.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { FoodCreateComponent } from './components/views/food/food-create/food-create.component';
+import { FoodUpdateComponent } from './components/views/food/food-update/food-update.component';
 
 
 
@@ -44,7 +46,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     BeveragesReadComponent,
     FoodReadComponent,
     BeveragesCreateComponent,
-    BeveragesUpdateComponent
+    BeveragesUpdateComponent,
+    FoodCreateComponent,
+    FoodUpdateComponent
   ],
   imports: [
     BrowserModule,

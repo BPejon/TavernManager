@@ -3,6 +3,8 @@
         <h1>Food</h1>
     </div>
 
+    <button class="createButton mat-elevation-z8" (click)="navigateToCreate()" mat-raised-button color="primary" >New Food</button> 
+
     <div class="tablecontent mat-elevation-z8">
         <table mat-table class="table" [dataSource]="food" >
             <!-- Position Column -->

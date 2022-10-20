@@ -1,0 +1,32 @@
+<form>
+    <h1> New Food</h1>
+
+    <mat-form-field class ="form">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]= "food.name " type="text" name="name" placeholder="e.g New Food" >
+    </mat-form-field>
+
+    <mat-form-field class = "form">
+        <mat-label>Price</mat-label>
+        <input matInput [(ngModel)]= "food.price" type="number" name="price" placeholder="$$$">
+    </mat-form-field>
+
+    <mat-form-field class = "form">
+        <mat-label>Bottle Size</mat-label>
+        <input matInput type="number" [(ngModel)]= "food.mass " name="weight" placeholder="ml">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Stock Amount</mat-label>
+        <input matInput type="number" [(ngModel)] = "food.stockAmount" name= "stockAmount" placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Description</mat-label>
+        <textarea matInput name="description" [(ngModel)]="food.description" placeholder="Write a Description"> </textarea>
+    </mat-form-field>
+    <div class="buttons">
+        <button (click)= "createFood()" class="createButton mat-elevation-z8" mat-raised-button color="primary">Create</button>
+        <button (click) ="navigateToFoodRead()" class="cancelButton mat-elevation-z8" mat-raised-button color="primary">Cancel</button>
+    </div>
+</form>

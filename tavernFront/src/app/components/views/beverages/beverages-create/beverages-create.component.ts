@@ -35,6 +35,10 @@ export class BeveragesCreateComponent implements OnInit {
 
   navigateToBeverageRead() : void{
     this.router.navigate(["drinks"]);
-    
+  }
+
+  update(){
+
+
   }
 }

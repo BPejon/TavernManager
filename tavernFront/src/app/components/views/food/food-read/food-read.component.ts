@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { FoodService } from '../food.service';
 import { Food, FoodPage, Pageable, Sort } from '../food.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-food-read',
@@ -36,7 +37,7 @@ export class FoodReadComponent implements OnInit, AfterViewInit{
   paginator !: MatPaginator;
 
 
-  constructor(private service: FoodService) { }
+  constructor(private service: FoodService, private router:Router) { }
 
   ngOnInit(): void {
     this.findAll(this.DEFAULT_PAGE_INDEX, this.DEFAULT_PAGE_SIZE);
@@ -51,6 +52,9 @@ export class FoodReadComponent implements OnInit, AfterViewInit{
     
   }
 
+  navigateToCreate(): void{
+    this.router.navigate(["food/create"]);
+  }
 
   findAll(pageIndex: number, pageSize: number){
     this.service.findAll(pageIndex, pageSize).subscribe(ans=> {
