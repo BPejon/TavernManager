@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
+import { Food } from '../food.model';
+import { FoodService } from '../food.service';
 
 @Component({
   selector: 'app-food-create',
@@ -7,6 +9,14 @@ import {Router } from '@angular/router';
   styleUrls: ['./food-create.component.css']
 })
 export class FoodCreateComponent implements OnInit {
+
+  food : Food ={
+    name: '',
+    price: 0,
+    mass: 0,
+    stockAmount: 0,
+    description: ''
+  }
 
   constructor(
     private service: FoodService,
@@ -17,7 +27,11 @@ export class FoodCreateComponent implements OnInit {
   }
 
   createFood(): void{
-    this.service.create();
+    this.service.create(this.food).subscribe(ans=>{
+      console.log(this.food);
+      this.service.message(`${this.food.name} created!`);
+      this.router.navigate(['food']);
+    });
 
   }
 

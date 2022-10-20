@@ -1,1 +1,35 @@
-<p>food-update works!</p>
+<form>
+    <h1>Update Food</h1>
+
+    
+    <mat-form-field class="form">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]= "food.name" type="text" name="name" placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Price</mat-label>
+        <input matInput [(ngModel)]= "food.price" type="number" name="price" placeholder="$$$">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Weight</mat-label>
+        <input matInput [(ngModel)]= "food.mass" type="number" name="mass" placeholder="ml">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Stock Amount</mat-label>
+        <input matInput [(ngModel)] = "food.stockAmount" type="number" name="stockAmount" >
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]= "food.description" name="description" placeholder="Write a Description"></textarea>
+    </mat-form-field>
+
+    <div class="buttons">
+        <button mat-button class="updateButton mat-elevation-z8" (click)="updateAndReturn()" mat-raised-button color="primary">Update</button>
+        <button mat-button class="cancelButton mat-elevation-z8" (click)="navigateToBeveragesRead()" mat-raised-button color="primary">Cancel</button>
+        <button mat-button class="deleteButton mat-elevation-z8" (click)="openDeleteDialog()" mat-raised-button color = "primary">Delete</button>
+    </div>
+</form>

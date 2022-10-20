@@ -24,7 +24,6 @@ export class BeveragesCreateComponent implements OnInit {
 
   create(): void{
     this.service.create(this.beverage).subscribe(ans=> {
-      console.log(ans);
       this.service.message(`${this.beverage.name} Created`);
       this.router.navigate(["drinks"]);
       console.log(ans);

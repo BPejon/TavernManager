@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Food } from '../food.model';
+import { FoodService } from '../food.service';
 
 @Component({
   selector: 'app-food-update',
@@ -7,9 +11,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FoodUpdateComponent implements OnInit {
 
-  constructor() { }
+
+  food : Food= {
+    name: '',
+    price: 0,
+    mass: 0,
+    stockAmount: 0,
+    description:''
+  }
+
+  constructor(
+    private service: FoodService,
+    public dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  updateAndReturn(){
+
+
+  }
+
+  navigateToBeveragesRead(){
+    this.router.navigate(["food"]);
+  }
+
+  openDeleteDialog(){
+    //this.dialog.open();
+
+
+  }
 }
