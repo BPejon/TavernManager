@@ -42,9 +42,6 @@
                     <a class ="edit" routerLink= "update/{{row.name}}">
                         <i class="material-icons"> edit</i>
                     </a>
-                    <a class = "delete" href="#">
-                        <i class="material-icons">delete</i>
-                    </a>
                 </td>
             </ng-container>
 
@@ -53,6 +50,8 @@
             <tr mat-row *matRowDef= "let row; columns: displayedColumns;"></tr>
         </table>
       </div>
+
+
 
       <mat-paginator class="mat-elevation-z8" 
       [length] ="page.totalElements"

@@ -28,7 +28,8 @@
     </mat-form-field>
 
     <div class="buttons">
-        <button class="updateButton mat-elevation-z8" (click)="updateAndReturn()" mat-raised-button color="primary">Update</button>
-        <button class="cancelButton mat-elevation-z8" (click)="navigateToBeveragesRead()" mat-raised-button color="primary">Cancel</button> 
+        <button mat-button class="updateButton mat-elevation-z8" (click)="updateAndReturn()" mat-raised-button color="primary">Update</button>
+        <button mat-button class="cancelButton mat-elevation-z8" (click)="navigateToBeveragesRead()" mat-raised-button color="primary">Cancel</button>
+        <button mat-button class="deleteButton mat-elevation-z8" (click)="openDeleteDialog()" mat-raised-button color = "primary">Delete</button>
     </div>
 </form>

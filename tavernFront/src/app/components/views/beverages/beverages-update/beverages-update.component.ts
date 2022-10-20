@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router} from '@angular/router';
 import { Beverages } from '../beverages.model';
 import { BeveragesService } from '../beverages.service';
+import { DialogDeleteComponent } from '../dialogs/dialog-delete/dialog-delete.component';
 
 @Component({
   selector: 'app-beverages-update',
@@ -18,7 +20,11 @@ export class BeveragesUpdateComponent implements OnInit {
     stockAmount: 0,
     description:''
   }
-  constructor(private service: BeveragesService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private service: BeveragesService,
+    private router: Router, 
+    private route: ActivatedRoute, 
+    public dialog: MatDialog){}
 
   ngOnInit(): void {
     this.beverage.name = this.route.snapshot.paramMap.get('id')!;
@@ -46,5 +52,11 @@ export class BeveragesUpdateComponent implements OnInit {
   }
   navigateToBeveragesRead():void{
     this.router.navigate(["drinks"]);
+  }
+
+  openDeleteDialog(){
+    this.dialog.open(DialogDeleteComponent,{
+      data: this.beverage.name
+    });
   }
 }

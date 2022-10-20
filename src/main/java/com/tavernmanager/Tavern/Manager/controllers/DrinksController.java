@@ -58,7 +58,7 @@ public class DrinksController {
         //Comparar nomes
 //        if(drinkName!= drink.getName())
 //            return ResponseEntity.status(HttpStatus.CONFLICT).body("Drink id's are not the same");
-        if(!updateDrink.isPresent()){
+        if(updateDrink.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(drinkName + " Not Found!");
         }
 
@@ -67,14 +67,14 @@ public class DrinksController {
 
     @Operation(summary = "Delete a drink")
     @DeleteMapping("/{drinkName}")
-    public ResponseEntity<Object> deleteDrink(@PathVariable String drinkName){
+    public ResponseEntity<Void> deleteDrink(@PathVariable String drinkName){
         //Check if exists
         Optional<DrinksModel> drink = drinksService.getDrink(drinkName);
-        if(!drink.isPresent())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(drinkName + " Not Found");
+        if(drink.isEmpty())
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         drinksService.delete(drink.get().getName());
-        return ResponseEntity.status(HttpStatus.OK).body(drinkName + " deleted successfully");
+        return ResponseEntity.noContent().build();
     }
 
 }

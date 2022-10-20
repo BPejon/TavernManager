@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { Beverages, Page, Pageable, Sort } from '../beverages.model';
 import { BeveragesService } from '../beverages.service';
+import { DialogDeleteComponent } from '../dialogs/dialog-delete/dialog-delete.component';
 
 @Component({
   selector: 'app-beverages-read',
@@ -37,7 +39,7 @@ export class BeveragesReadComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator)
   paginator !: MatPaginator;
   
-  constructor(private service: BeveragesService, private router: Router) { }
+  constructor(private service: BeveragesService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.findAll(this.DEFAULT_PAGE, this.DEFAULT_PAGE_SIZE);
@@ -66,5 +68,9 @@ export class BeveragesReadComponent implements OnInit, AfterViewInit {
   navigateToBeveragesCreate(){
     this.router.navigate(["drinks/create"]);
 
+  }
+
+  openDeleteDialog(){
+    this.dialog.open(DialogDeleteComponent);
   }
 }

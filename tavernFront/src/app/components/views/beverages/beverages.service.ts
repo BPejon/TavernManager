@@ -34,6 +34,12 @@ export class BeveragesService {
     const url = `${this.baseUrl}/drinks/${id}`;
     return this.http.get<Beverages>(url);
   }
+
+  delete(id:String): Observable<void>{
+    const url = `${this.baseUrl}/drinks/${id}`;
+    return this.http.delete<void>(url);
+  }
+
   message(str: String): void{
     this.snackBar.open(`${str}`, 'OK', {
       horizontalPosition: 'center',

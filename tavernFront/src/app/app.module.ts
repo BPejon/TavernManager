@@ -23,12 +23,15 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { BeveragesCreateComponent } from './components/views/beverages/beverages-create/beverages-create.component';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BeveragesUpdateComponent } from './components/views/beverages/beverages-update/beverages-update.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -58,10 +61,12 @@ import { BeveragesUpdateComponent } from './components/views/beverages/beverages
     MatPaginatorModule,
     MatSortModule,
     MatButtonModule,
+    MatButtonToggleModule,
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
