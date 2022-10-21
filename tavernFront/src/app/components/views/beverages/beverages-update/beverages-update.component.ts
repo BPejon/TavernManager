@@ -44,7 +44,6 @@ export class BeveragesUpdateComponent implements OnInit {
 
   findById(id: String){
     this.service.findById(id).subscribe(ans =>{
-      console.log(ans);
       this.beverage = ans;
 
     })

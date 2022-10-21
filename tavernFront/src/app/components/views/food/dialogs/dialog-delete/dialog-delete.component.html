@@ -1,0 +1,8 @@
+<h1 mat-dialog-title> Delete</h1>
+
+<h2>Are you sure you want to delete {{data}} from Food?</h2>
+
+<div mat-dialog-actions class="buttonsFood">
+    <button mat-button class="cancel" (click)= "cancel()"> Cancel</button>
+    <button mat-button class="delete" (click)= "delete()" cdkFocusInitial> Delete</button> 
+</div>

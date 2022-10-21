@@ -33,6 +33,7 @@ import { BeveragesUpdateComponent } from './components/views/beverages/beverages
 import {MatDialogModule} from '@angular/material/dialog';
 import { FoodCreateComponent } from './components/views/food/food-create/food-create.component';
 import { FoodUpdateComponent } from './components/views/food/food-update/food-update.component';
+import { DialogDeleteComponent } from './components/views/food/dialogs/dialog-delete/dialog-delete.component';
 
 
 
@@ -48,7 +49,8 @@ import { FoodUpdateComponent } from './components/views/food/food-update/food-up
     BeveragesCreateComponent,
     BeveragesUpdateComponent,
     FoodCreateComponent,
-    FoodUpdateComponent
+    FoodUpdateComponent,
+    DialogDeleteComponent
   ],
   imports: [
     BrowserModule,

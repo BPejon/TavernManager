@@ -1,8 +1,7 @@
-import { Component, OnInit, Inject} from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { ɵInjectableAnimationEngine } from '@angular/platform-browser/animations';
-import { Route, Router } from '@angular/router';
-import { BeveragesService } from '../../beverages.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { BeveragesService } from '../../../beverages/beverages.service';
 
 @Component({
   selector: 'app-dialog-delete',
@@ -11,7 +10,6 @@ import { BeveragesService } from '../../beverages.service';
 })
 export class DialogDeleteComponent implements OnInit {
 
-  //@Inject(MAT_DIALOG_DATA) public data: DialogData)
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: String,
     public dialogRef: MatDialogRef<DialogDeleteComponent>,
