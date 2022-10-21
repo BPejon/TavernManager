@@ -34,6 +34,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { FoodCreateComponent } from './components/views/food/food-create/food-create.component';
 import { FoodUpdateComponent } from './components/views/food/food-update/food-update.component';
 import { DialogDeleteComponent } from './components/views/food/dialogs/dialog-delete/dialog-delete.component';
+import { TravellerReadComponent } from './components/views/traveller/traveller-read/traveller-read.component';
+import { TravellerCreateComponent } from './components/views/traveller/traveller-create/traveller-create.component';
+import { TravellerUpdateComponent } from './components/views/traveller/traveller-update/traveller-update.component';
+import { TravellerBuyComponent } from './components/views/traveller/traveller-buy/traveller-buy.component';
 
 
 
@@ -50,7 +54,11 @@ import { DialogDeleteComponent } from './components/views/food/dialogs/dialog-de
     BeveragesUpdateComponent,
     FoodCreateComponent,
     FoodUpdateComponent,
-    DialogDeleteComponent
+    DialogDeleteComponent,
+    TravellerReadComponent,
+    TravellerCreateComponent,
+    TravellerUpdateComponent,
+    TravellerBuyComponent
   ],
   imports: [
     BrowserModule,
