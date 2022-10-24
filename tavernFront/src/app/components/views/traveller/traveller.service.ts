@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Page } from 'ngx-pagination';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Traveller } from './traveller.model';
+import { Traveller, TravellerPage } from './traveller.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,9 @@ export class TravellerService {
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
-  findAll(pageNumber: number, pageSize:number): Observable<Traveller> {
+  findAll(pageNumber: number, pageSize:number): Observable<TravellerPage> {
     const url = `${this.baseUrl}/traveller?page=${pageNumber}&size=${pageSize}`;
-    return this.http.get<Traveller>(url);
+    return this.http.get<TravellerPage>(url);
 
   }
   

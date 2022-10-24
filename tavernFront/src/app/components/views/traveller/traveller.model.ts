@@ -1,4 +1,4 @@
-export interface Page {
+export interface TravellerPage {
     content: Array<Traveller>;
     pageable: Pageable;
     last: boolean;

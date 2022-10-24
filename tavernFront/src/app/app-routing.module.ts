@@ -9,6 +9,8 @@ import { BeveragesUpdateComponent } from './components/views/beverages/beverages
 import { FoodCreateComponent } from './components/views/food/food-create/food-create.component';
 import { FoodUpdateComponent } from './components/views/food/food-update/food-update.component';
 import { TravellerReadComponent } from './components/views/traveller/traveller-read/traveller-read.component';
+import { TravellerCreateComponent } from './components/views/traveller/traveller-create/traveller-create.component';
+import { TravellerUpdateComponent } from './components/views/traveller/traveller-update/traveller-update.component';
 
 
 const routes: Routes = [
@@ -43,6 +45,14 @@ const routes: Routes = [
   {
     path:"traveller",
     component:TravellerReadComponent
+  },
+  {
+    path: "traveller/create",
+    component: TravellerCreateComponent
+  },
+  {
+    path: "traveller/update/:id",
+    component: TravellerUpdateComponent
   }
 
 ];

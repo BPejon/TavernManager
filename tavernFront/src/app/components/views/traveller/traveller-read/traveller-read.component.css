@@ -25,8 +25,11 @@
     color: rgb(209, 240, 105);
 }
 
-.delete{
-    color: rgba(235, 36, 36, 0.874);
+.inventory{
+    color: aliceblue;
+}
+.buy{
+    color: green;
 }
 
 .description{
