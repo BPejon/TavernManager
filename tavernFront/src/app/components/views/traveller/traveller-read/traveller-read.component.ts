@@ -53,7 +53,6 @@ export class TravellerReadComponent implements OnInit, AfterViewInit {
 
   findAll(pageNumber: number, pageSize: number){
     this.service.findAll(pageNumber, pageSize).subscribe( ans =>{
-      console.log(ans);
       this.page = ans;
       this.traveller = this.page.content;
     })

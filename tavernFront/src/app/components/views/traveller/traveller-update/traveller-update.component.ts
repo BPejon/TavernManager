@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogDeleteComponent } from '../dialogs/dialog-delete/dialog-delete.component';
 import { Traveller } from '../traveller.model';
 import { TravellerService } from '../traveller.service';
 
@@ -50,6 +51,9 @@ export class TravellerUpdateComponent implements OnInit {
   }
 
   openDeleteDialog(){
+    this.dialog.open(DialogDeleteComponent, {
+      data: this.traveller.name
+    })
 
   }
 }
