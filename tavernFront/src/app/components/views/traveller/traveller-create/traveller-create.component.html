@@ -1,1 +1,33 @@
-<p>traveller-create works!</p>
+<form>
+    <h1> New Traveller</h1>
+
+    <mat-form-field class ="form">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]= "traveller.name " type="text" name="name" placeholder="e.g New Traveller" >
+    </mat-form-field>
+
+    <mat-form-field class = "form">
+        <mat-label>Province</mat-label>
+        <input matInput [(ngModel)]= "traveller.province" type="text" name="province" placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class = "form">
+        <mat-label>Class</mat-label>
+        <input matInput type="text" [(ngModel)]= "traveller.classType " name="classType" placeholder="class">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Level</mat-label>
+        <input matInput type="number" [(ngModel)] = "traveller.level" name= "level" placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Coins</mat-label>
+        <input matInput type="number" [(ngModel)] = "traveller.coins" name= "coins" placeholder="">
+    </mat-form-field>
+
+    <div class="buttons">
+        <button (click)="create()" class="createButton mat-elevation-z8" mat-raised-button color="primary">Create</button>
+        <button (click) ="navigateToBeverageRead()" class="cancelButton mat-elevation-z8" mat-raised-button color="primary">Cancel</button>
+    </div>
+</form>
