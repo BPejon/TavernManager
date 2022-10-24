@@ -36,7 +36,7 @@ export class BeveragesUpdateComponent implements OnInit {
       this.router.navigate(["drinks"]);
       this.service.message(`${this.beverage.name} Updated!`);
     }, err=>{
-      this.service.message("Verify if have any blank option");
+      this.service.message("Fill all the blanks!");
     })
 
   }

@@ -20,7 +20,7 @@ export class FoodService {
   }
 
   create(food: Food): Observable<Food>{
-    const url = `${this.baseUrl}`;
+    const url = `${this.baseUrl}/food`;
     return this.http.post<Food>(url, food);
   }
 
