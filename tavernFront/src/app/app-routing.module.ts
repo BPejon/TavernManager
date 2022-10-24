@@ -11,6 +11,9 @@ import { FoodUpdateComponent } from './components/views/food/food-update/food-up
 import { TravellerReadComponent } from './components/views/traveller/traveller-read/traveller-read.component';
 import { TravellerCreateComponent } from './components/views/traveller/traveller-create/traveller-create.component';
 import { TravellerUpdateComponent } from './components/views/traveller/traveller-update/traveller-update.component';
+import { ShopOptionsSelectComponent } from './components/views/traveller/shop/shop-options-select/shop-options-select.component';
+import { ShopBeverageComponent } from './components/views/traveller/shop/shop-beverage/shop-beverage.component';
+import { ShopFoodComponent } from './components/views/traveller/shop/shop-food/shop-food.component';
 
 
 const routes: Routes = [
@@ -53,6 +56,18 @@ const routes: Routes = [
   {
     path: "traveller/update/:id",
     component: TravellerUpdateComponent
+  },
+  {
+    path: "traveller/:id/shop",
+    component: ShopOptionsSelectComponent
+  },
+  {
+    path: "traveller/:id/shopBeverage",
+    component: ShopBeverageComponent
+  },
+    {
+    path: "traveller/:id/shopFood",
+    component: ShopFoodComponent
   }
 
 ];
