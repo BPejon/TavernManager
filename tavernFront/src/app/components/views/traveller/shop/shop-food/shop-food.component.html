@@ -1,1 +1,64 @@
-<p>shop-food works!</p>
+<div class="content">
+    <div class="title">
+        <h1>Food Shop</h1>
+    </div>
+
+    <div class="tablecontent mat-elevation-z8">
+        <table mat-table class="table" [dataSource]="food" >
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef= "let row"> {{row.name}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef> Price </th>
+              <td mat-cell *matCellDef= "let row"> {{row.price}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef> Weight</th>
+              <td mat-cell *matCellDef= "let row"> {{row.weight}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="stockAmount">
+                <th mat-header-cell *matHeaderCellDef> Stock Amount</th>
+                <td mat-cell *matCellDef= "let row"> {{row.stockAmount}} </td>
+              </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef> Description </th>
+              <td mat-cell *matCellDef= "let row"> {{row.description}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let row"> {{row.actions}}
+                  <a class = "buy" routerLink="update/{{row.name}}">
+                    <i class="material-icons">buy</i>
+                  </a>
+              </td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef= "let row; columns: displayedColumns;"></tr>
+          </table>
+          
+
+          <mat-paginator class = "mat-elevation-z8" 
+          [length]=" page.totalElements"
+          [pageSize] = "5"
+          [pageSizeOptions]="[5,10,15]"
+          aria-label="Select Page">
+          </mat-paginator>
+
+
+    </div>
+    <button mat-button class="shopFood mat-elevation-z8" (click)="goBack()" mat-raised-button color="primary" >Back</button>
+
+
+
+</div>

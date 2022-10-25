@@ -62,11 +62,11 @@ const routes: Routes = [
     component: ShopOptionsSelectComponent
   },
   {
-    path: "traveller/:id/shopBeverage",
+    path: "shopBeverage",
     component: ShopBeverageComponent
   },
     {
-    path: "traveller/:id/shopFood",
+    path: "shopFood",
     component: ShopFoodComponent
   }
 

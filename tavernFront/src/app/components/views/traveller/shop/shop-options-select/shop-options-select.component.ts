@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop-options-select',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopOptionsSelectComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  goToShopBeverage(){
+    this.router.navigate(["/shopBeverage"]);
+  }
+
+  goToShopFood(){
+    this.router.navigate(["/shopFood"]);
+  }
+
+  goBack(){
+    this.router.navigate(["traveller"]);
+  }
 }
