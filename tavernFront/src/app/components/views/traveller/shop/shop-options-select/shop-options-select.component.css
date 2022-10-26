@@ -3,6 +3,10 @@
     text-align: start;
 }
 
-.shopButton{
+.shopFood{
+    margin-right: 1rem;
+}
+
+.shopBeverage{
     margin-right: 1rem;
 }
