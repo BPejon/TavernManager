@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Food, FoodPage, Pageable, Sort } from '../../../food/food.model';
 import { FoodService } from '../../../food/food.service';
+import { Traveller } from '../../traveller.model';
+import { TravellerService } from '../../traveller.service';
+import { ShopService } from '../shop.service';
 
 @Component({
   selector: 'app-shop-food',
@@ -33,13 +36,25 @@ export class ShopFoodComponent implements OnInit {
     empty: true,
   };
 
+
+
   @ViewChild(MatPaginator)
   paginator !: MatPaginator;
 
-  constructor(private service: FoodService, private router:Router) { }
+  traveller!: Traveller;
+  id_trav !: string;
+
+  constructor(
+    private foodService: FoodService,
+    private travellerService: TravellerService,
+    private shopService: ShopService,
+    private router:Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.findAll(this.DEFAULT_PAGE_INDEX, this.DEFAULT_PAGE_SIZE);
+    this.id_trav = this.route.snapshot.paramMap.get("id_trav")!;
+    this.findTraveller(this.id_trav);
   }
 
   ngAfterViewInit(): void {
@@ -49,8 +64,15 @@ export class ShopFoodComponent implements OnInit {
     
   }
 
+  findTraveller(id: string): void{
+    this.travellerService.findById(id).subscribe(ans=>{
+      this.traveller = ans;
+    })
+
+  }
+
   findAll(pageIndex: number, pageSize: number){
-    this.service.findAll(pageIndex, pageSize).subscribe(ans=> {
+    this.foodService.findAll(pageIndex, pageSize).subscribe(ans=> {
       this.page = ans;
       this.food = this.page.content;
     })

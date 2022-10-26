@@ -25,7 +25,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { BeveragesCreateComponent } from './components/views/beverages/beverages-create/beverages-create.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -84,7 +84,8 @@ import { ShopFoodComponent } from './components/views/traveller/shop/shop-food/s
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

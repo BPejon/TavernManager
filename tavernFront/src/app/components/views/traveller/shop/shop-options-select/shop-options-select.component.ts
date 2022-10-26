@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop-options-select',
@@ -8,20 +8,23 @@ import { Route, Router } from '@angular/router';
 })
 export class ShopOptionsSelectComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
+
+  id_trav !: string;
 
   ngOnInit(): void {
+    this.id_trav = this.route.snapshot.paramMap.get("id_trav")!;
   }
 
   goToShopBeverage(){
-    this.router.navigate(["/shopBeverage"]);
+    this.router.navigate([`traveller/${this.id_trav}/shopBeverage`]);
   }
 
   goToShopFood(){
-    this.router.navigate(["/shopFood"]);
+    this.router.navigate([`traveller/${this.id_trav}/shopFood`]);
   }
 
   goBack(){
-    this.router.navigate(["traveller"]);
+    this.router.navigate([`traveller/${this.id_trav}/traveller`]);
   }
 }

@@ -58,15 +58,15 @@ const routes: Routes = [
     component: TravellerUpdateComponent
   },
   {
-    path: "traveller/:id/shop",
+    path: "traveller/:id_trav/shop",
     component: ShopOptionsSelectComponent
   },
   {
-    path: "shopBeverage",
+    path: "traveller/:id_trav/shopBeverage",
     component: ShopBeverageComponent
   },
     {
-    path: "shopFood",
+    path: "traveller/:id_trav/shopFood",
     component: ShopFoodComponent
   }
 
