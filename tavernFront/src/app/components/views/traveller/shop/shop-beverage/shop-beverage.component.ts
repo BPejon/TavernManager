@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Beverages, Page, Pageable, Sort } from '../../../beverages/beverages.model';
 import { BeveragesService } from '../../../beverages/beverages.service';
+import { DialogBuyBeverageComponent } from '../../dialogs/dialog-buy-beverage/dialog-buy-beverage.component';
+import { Traveller } from '../../traveller.model';
+import { TravellerService } from '../../traveller.service';
 import { ShopService } from '../shop.service';
 
 @Component({
@@ -36,13 +40,22 @@ export class ShopBeverageComponent implements OnInit {
 
   @ViewChild(MatPaginator)
   paginator !: MatPaginator;
-  
+
+  traveller!: Traveller;
   id_trav !: string;
-  constructor(private beverageShop: BeveragesService, private shopService: ShopService, private router: Router, private route: ActivatedRoute) { }
+  coins:number = 0;
+  
+  constructor(
+    private travellerService: TravellerService,
+    private beverageService: BeveragesService,
+    private router: Router, 
+    private route: ActivatedRoute,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.findAll(this.DEFAULT_PAGE, this.DEFAULT_PAGE_SIZE);
     this.id_trav = this.route.snapshot.paramMap.get("id_trav")!;
+    this.findTraveller(this.id_trav);
   }
 
   ngAfterViewInit(): void {
@@ -53,9 +66,16 @@ export class ShopBeverageComponent implements OnInit {
     );
   }
 
+  findTraveller(id: string): void{
+    this.travellerService.findById(id).subscribe(ans=>{
+      this.traveller = ans;
+      this.coins = this.traveller.coins;
+    })
+
+  }
 
   findAll(pageNumber: number, pageSize: number){
-    this.beverageShop.findAll(pageNumber, pageSize).subscribe(answer =>  {
+    this.beverageService.findAll(pageNumber, pageSize).subscribe(answer =>  {
       this.page = answer;
       this.beverages = this.page.content;
     })
@@ -65,7 +85,14 @@ export class ShopBeverageComponent implements OnInit {
     this.router.navigate(["traveller/shop"]);
   }
 
-  buyBeverage(){
-    
+  buyBeverageDialog(bevName:string, bevPrice: number){
+    this.dialog.open(DialogBuyBeverageComponent, {
+      data: {
+        travName: this.traveller.name,
+        travCoins: this.traveller.coins,
+        bevName: bevName,
+        bevPrice: bevPrice
+      }
+    })
   }
 }

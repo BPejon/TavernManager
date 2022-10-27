@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { BeveragesService } from '../../../beverages/beverages.service';
 import { ShopService } from '../../shop/shop.service';
 
 @Component({
@@ -13,11 +14,12 @@ export class DialogBuyBeverageComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<DialogBuyBeverageComponent>,
-    private service: ShopService,
-    private router: Router
+    private shopService: ShopService,
+    private bevService: BeveragesService,
   ) { }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
 
   cancel(){
@@ -25,7 +27,17 @@ export class DialogBuyBeverageComponent implements OnInit {
   }
 
   buy(){
-    this.service
+    this.bevService.findById(this.data.bevName).subscribe(beverage=>{
+      this.shopService.buyBeverage(this.data.travName, this.data.bevName, beverage).subscribe(() =>{
+        this.dialogRef.close();
+        window.location.reload();
+        this.shopService.message(`${this.data.bevName} bought successfully`);
+
+      },err =>{
+        this.shopService.message(`Not enought money to buy this item!`);
+      })
+    })
+    
   }
 
 }

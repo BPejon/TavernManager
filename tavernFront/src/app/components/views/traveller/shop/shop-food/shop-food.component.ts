@@ -38,8 +38,6 @@ export class ShopFoodComponent implements OnInit {
     empty: true,
   };
 
-
-
   coins: number =0;
 
   @ViewChild(MatPaginator)
@@ -51,7 +49,6 @@ export class ShopFoodComponent implements OnInit {
   constructor(
     private foodService: FoodService,
     private travellerService: TravellerService,
-    private shopService: ShopService,
     private router:Router,
     private route: ActivatedRoute,
     public dialog : MatDialog) { }
