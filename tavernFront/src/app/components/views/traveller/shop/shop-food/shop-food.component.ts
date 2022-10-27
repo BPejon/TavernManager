@@ -37,6 +37,7 @@ export class ShopFoodComponent implements OnInit {
   };
 
 
+  coins: number = 0;
 
   @ViewChild(MatPaginator)
   paginator !: MatPaginator;
@@ -55,6 +56,8 @@ export class ShopFoodComponent implements OnInit {
     this.findAll(this.DEFAULT_PAGE_INDEX, this.DEFAULT_PAGE_SIZE);
     this.id_trav = this.route.snapshot.paramMap.get("id_trav")!;
     this.findTraveller(this.id_trav);
+    console.log(this.traveller.coins);
+    this.coins = this.traveller.coins;
   }
 
   ngAfterViewInit(): void {

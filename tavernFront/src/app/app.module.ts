@@ -40,6 +40,7 @@ import { TravellerUpdateComponent } from './components/views/traveller/traveller
 import { TravellerBuyComponent } from './components/views/traveller/traveller-buy/traveller-buy.component';
 import { ShopBeverageComponent } from './components/views/traveller/shop/shop-beverage/shop-beverage.component';
 import { ShopFoodComponent } from './components/views/traveller/shop/shop-food/shop-food.component';
+import { ShopSelectorComponent } from './components/views/traveller/shop/shop-selector/shop-selector.component';
 
 
 
@@ -62,7 +63,8 @@ import { ShopFoodComponent } from './components/views/traveller/shop/shop-food/s
     TravellerUpdateComponent,
     TravellerBuyComponent,
     ShopBeverageComponent,
-    ShopFoodComponent
+    ShopFoodComponent,
+    ShopSelectorComponent
   ],
   imports: [
     BrowserModule,
