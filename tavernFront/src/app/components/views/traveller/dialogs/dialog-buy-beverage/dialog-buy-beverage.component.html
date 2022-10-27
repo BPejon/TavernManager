@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Buy</h1>
+
+<div class="text">
+    <h2>Are you sure you want to buy {{data.bevName}} for {{data.travName}} ?</h2>
+    <h3>You have: {{data.travCoins}} coins</h3>
+    <h3>Price: {{data.bevPrice}} </h3>
+    <h3>You'll have: {{data.travCoins - data.bevPrice}} coins after buying.</h3>
+</div>
+
+
+<div mat-dialog-actions class="buttons">
+    <button mat-button class="cancel" (click)= "cancel()"> Cancel</button>
+    <button mat-button class="delete" (click)= "buy()" cdkFocusInitial> Buy</button> 
+</div>

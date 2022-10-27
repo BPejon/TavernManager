@@ -64,4 +64,8 @@ export class ShopBeverageComponent implements OnInit {
   goBack(): void{
     this.router.navigate(["traveller/shop"]);
   }
+
+  buyBeverage(){
+    
+  }
 }

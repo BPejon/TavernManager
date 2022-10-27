@@ -19,7 +19,6 @@ export class DialogDeleteComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 
   cancel(){

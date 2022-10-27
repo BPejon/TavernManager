@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Food, FoodPage, Pageable, Sort } from '../../../food/food.model';
 import { FoodService } from '../../../food/food.service';
+import { DialogBuyFoodComponent } from '../../dialogs/dialog-buy-food/dialog-buy-food.component';
 import { Traveller } from '../../traveller.model';
 import { TravellerService } from '../../traveller.service';
 import { ShopService } from '../shop.service';
@@ -37,7 +39,8 @@ export class ShopFoodComponent implements OnInit {
   };
 
 
-  coins: number = 0;
+
+  coins: number =0;
 
   @ViewChild(MatPaginator)
   paginator !: MatPaginator;
@@ -50,14 +53,13 @@ export class ShopFoodComponent implements OnInit {
     private travellerService: TravellerService,
     private shopService: ShopService,
     private router:Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    public dialog : MatDialog) { }
 
   ngOnInit(): void {
     this.findAll(this.DEFAULT_PAGE_INDEX, this.DEFAULT_PAGE_SIZE);
     this.id_trav = this.route.snapshot.paramMap.get("id_trav")!;
     this.findTraveller(this.id_trav);
-    console.log(this.traveller.coins);
-    this.coins = this.traveller.coins;
   }
 
   ngAfterViewInit(): void {
@@ -70,6 +72,7 @@ export class ShopFoodComponent implements OnInit {
   findTraveller(id: string): void{
     this.travellerService.findById(id).subscribe(ans=>{
       this.traveller = ans;
+      this.coins = this.traveller.coins;
     })
 
   }
@@ -82,7 +85,19 @@ export class ShopFoodComponent implements OnInit {
   }
 
   goBack(): void{
-    this.router.navigate(["shop"]);
+    this.router.navigate(["traveller"]);
+  }
+
+  buyDialog(foodName:string, foodPrice:number){
+    this.dialog.open(DialogBuyFoodComponent,{
+      data: {
+        travName: this.traveller.name,
+        travCoins: this.traveller.coins,
+        foodName: foodName,
+        foodPrice: foodPrice
+      }
+    })
+
   }
 
 

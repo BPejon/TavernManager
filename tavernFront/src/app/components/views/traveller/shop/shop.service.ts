@@ -16,12 +16,12 @@ export class ShopService {
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
   buyBeverage(id_trav:string, id_bev:string, beverage: Beverages): Observable<void>{
-    const url = `${this.baseUrl}${id_trav}/buydrink/${id_bev}`;
+    const url = `${this.baseUrl}/shop/${id_trav}/buydrink/${id_bev}`;
     return this.http.put<void>(url, beverage);
   }
 
   buyFood(id_trav:string, id_food:string, food: Food): Observable<void>{
-    const url = `${this.baseUrl}${id_trav}/buyfood/${id_food}`;
+    const url = `${this.baseUrl}/shop/${id_trav}/buyfood/${id_food}`;
     return this.http.put<void>(url, food);
   }
 
