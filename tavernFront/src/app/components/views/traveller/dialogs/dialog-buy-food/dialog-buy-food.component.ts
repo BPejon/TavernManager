@@ -1,4 +1,3 @@
-import { TmplAstRecursiveVisitor } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -32,6 +31,7 @@ export class DialogBuyFoodComponent implements OnInit {
       console.log(food);
       this.shopService.buyFood(this.data.travName, this.data.foodName,food).subscribe(() => {
         this.dialogRef.close();
+        window.location.reload();
         this.shopService.message(`${this.data.foodName} bought successfully`);
       }, err=>{
         this.shopService.message(`Not enought money to buy this item!`);

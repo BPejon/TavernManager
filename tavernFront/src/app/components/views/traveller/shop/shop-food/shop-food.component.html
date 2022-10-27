@@ -47,13 +47,16 @@
             </ng-container>
 
             <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef> Buy </th>
+              <th mat-header-cell *matHeaderCellDef> Buy </th>
                 <td mat-cell *matCellDef="let row"> {{row.actions}}
-                  <a class = "buy"  (click)="buyDialog(row.name, row.price)">
-                    <i class="material-icons">shop</i>
-                  </a>
+                  
+                  <ng-container *ngIf="row.price">
+                    <a  class = "buy"  (click)="buyDialog(row.name, row.price)"  >
+                      <i class="material-icons">shop</i>
+                    </a>
+                  </ng-container>
               </td>
-              </ng-container>
+            </ng-container>
           
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef= "let row; columns: displayedColumns;"></tr>
