@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TravellerService } from '../../traveller.service';
 
 @Component({
   selector: 'app-dialog-eat-food',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogEatFoodComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<DialogEatFoodComponent>,
+    private service: TravellerService,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  cancel(){
+    this.dialogRef.close();
+  }
+
+  eat(){
+    this.service.eatFood(this.data.travName, this.data.eatFood).subscribe(()=>{
+      this.dialogRef.close();
+      window.location.reload();
+      this.service.message(`You've eaten ${this.data.eatFood}`);
+    })
+
   }
 
 }
