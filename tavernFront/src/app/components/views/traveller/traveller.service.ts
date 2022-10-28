@@ -43,6 +43,16 @@ export class TravellerService {
     return this.http.delete<void>(url);
   }
 
+  drinkBeverage(trav: string, beverage: string): Observable<void>{
+    const url = `${this.baseUrl}/${trav}/drink/${beverage}`;
+    return this.http.delete<void>(url);
+  }
+
+  eatFood(trav: string, food: string): Observable<void>{
+    const url = `${this.baseUrl}/${trav}/eat/${food}`;
+    return this.http.delete<void>(url);
+  }
+
   message(str : String): void{
     this.snackBar.open(`${str}`, 'OK',{
       horizontalPosition: 'center',

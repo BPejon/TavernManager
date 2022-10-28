@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Beverages, Page, Pageable, Sort } from '../../../beverages/beverages.model';
 import { BeveragesService } from '../../../beverages/beverages.service';
+import { DialogDrinkBeverageComponent } from '../../dialogs/dialog-drink-beverage/dialog-drink-beverage.component';
 import { ShopBeverageComponent } from '../../shop/shop-beverage/shop-beverage.component';
 import { Traveller } from '../../traveller.model';
 import { TravellerService } from '../../traveller.service';
@@ -48,8 +49,13 @@ export class InventoryBeverageComponent implements OnInit {
     this.router.navigate(["traveller"]);
   }
 
-  eatDialog(foodName: string){
-    this.dialog.open(ShopBeverageComponent);
+  eatDialog(beverageName: string){
+    this.dialog.open(DialogDrinkBeverageComponent, {
+      data:{
+        travName:this.traveller.name,
+        bevName: beverageName
+      }
+    });
 
   }
 }
