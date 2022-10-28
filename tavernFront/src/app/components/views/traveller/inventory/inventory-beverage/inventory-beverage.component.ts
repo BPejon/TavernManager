@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Beverages, Page, Pageable, Sort } from '../../../beverages/beverages.model';
-import { BeveragesService } from '../../../beverages/beverages.service';
+import { Beverages} from '../../../beverages/beverages.model';
 import { DialogDrinkBeverageComponent } from '../../dialogs/dialog-drink-beverage/dialog-drink-beverage.component';
-import { ShopBeverageComponent } from '../../shop/shop-beverage/shop-beverage.component';
 import { Traveller } from '../../traveller.model';
 import { TravellerService } from '../../traveller.service';
 
@@ -25,7 +22,6 @@ export class InventoryBeverageComponent implements OnInit {
   
   constructor(
     private travellerService: TravellerService,
-    private beverageService: BeveragesService,
     private router: Router, 
     private route: ActivatedRoute,
     private dialog: MatDialog) { }
@@ -49,7 +45,7 @@ export class InventoryBeverageComponent implements OnInit {
     this.router.navigate(["traveller"]);
   }
 
-  eatDialog(beverageName: string){
+  drinkDialog(beverageName: string){
     this.dialog.open(DialogDrinkBeverageComponent, {
       data:{
         travName:this.traveller.name,

@@ -3,8 +3,8 @@
         <span>Inventory</span>
         
         <div class="links">
-            <a class= "food" routerLink="../inventoryFood">Food</a>
-            <a class = "beverage" routerLink="../inventoryBeverage">Beverage</a>
+            <a class= "food" routerLink="../foodInventory">Food</a>
+            <a class = "beverage" routerLink="../beverageInventory">Beverage</a>
         </div>
     </mat-toolbar>
 
@@ -43,7 +43,7 @@
                 <th mat-header-cell class ="actions" *matHeaderCellDef> Buy </th>
                 <td mat-cell *matCellDef= "let row"> {{row.actions}} 
 
-                    <button matbutton class ="buy" (click)="eatDialog(row.name)">Drink</button>    
+                    <button matbutton class ="buy" (click)="drinkDialog(row.name)">Drink</button>    
                 </td>
             </ng-container>
 

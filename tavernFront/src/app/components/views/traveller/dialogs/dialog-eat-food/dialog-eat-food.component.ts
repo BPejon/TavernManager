@@ -23,10 +23,10 @@ export class DialogEatFoodComponent implements OnInit {
   }
 
   eat(){
-    this.service.eatFood(this.data.travName, this.data.eatFood).subscribe(()=>{
+    this.service.eatFood(this.data.travName, this.data.foodName).subscribe(()=>{
       this.dialogRef.close();
       window.location.reload();
-      this.service.message(`You've eaten ${this.data.eatFood}`);
+      this.service.message(`You've eaten ${this.data.foodName}`);
     })
 
   }
