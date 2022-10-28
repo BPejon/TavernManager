@@ -14,6 +14,8 @@ import { TravellerUpdateComponent } from './components/views/traveller/traveller
 import { ShopBeverageComponent } from './components/views/traveller/shop/shop-beverage/shop-beverage.component';
 import { ShopFoodComponent } from './components/views/traveller/shop/shop-food/shop-food.component';
 import { ShopSelectorComponent } from './components/views/traveller/shop/shop-selector/shop-selector.component';
+import { InventoryFoodComponent } from './components/views/traveller/inventory/inventory-food/inventory-food.component';
+import { InventoryBeverageComponent } from './components/views/traveller/inventory/inventory-beverage/inventory-beverage.component';
 
 
 const routes: Routes = [
@@ -65,9 +67,17 @@ const routes: Routes = [
     path: "traveller/:id_trav/shopBeverage",
     component: ShopBeverageComponent
   },
-    {
+  {
     path: "traveller/:id_trav/shopFood",
     component: ShopFoodComponent
+  },
+  {
+    path: "traveller/:id_trav/foodInventory",
+    component: InventoryFoodComponent
+  },
+  {
+    path: "traveller/:id_trav/beverageInventory",
+    component: InventoryBeverageComponent
   }
 
 ];

@@ -43,6 +43,8 @@ import { ShopFoodComponent } from './components/views/traveller/shop/shop-food/s
 import { ShopSelectorComponent } from './components/views/traveller/shop/shop-selector/shop-selector.component';
 import { DialogBuyFoodComponent } from './components/views/traveller/dialogs/dialog-buy-food/dialog-buy-food.component';
 import { DialogBuyBeverageComponent } from './components/views/traveller/dialogs/dialog-buy-beverage/dialog-buy-beverage.component';
+import { InventoryFoodComponent } from './components/views/traveller/inventory/inventory-food/inventory-food.component';
+import { InventoryBeverageComponent } from './components/views/traveller/inventory/inventory-beverage/inventory-beverage.component';
 
 
 
@@ -68,7 +70,9 @@ import { DialogBuyBeverageComponent } from './components/views/traveller/dialogs
     ShopFoodComponent,
     ShopSelectorComponent,
     DialogBuyFoodComponent,
-    DialogBuyBeverageComponent
+    DialogBuyBeverageComponent,
+    InventoryFoodComponent,
+    InventoryBeverageComponent
   ],
   imports: [
     BrowserModule,

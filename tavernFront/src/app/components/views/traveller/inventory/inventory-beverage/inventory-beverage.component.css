@@ -1,0 +1,41 @@
+.content{
+    width: 90%;
+    margin: 1.4rem auto;
+}
+
+.title{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.title h1{
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.newBeverageButton{
+    margin-bottom: 1rem;
+}
+
+.table{
+    width: 100%;
+}
+
+.edit{
+    color: rgb(209, 240, 105);
+}
+
+.delete{
+    color: rgba(235, 36, 36, 0.874);
+}
+
+.description{
+    width: 30rem;
+}
+.actions{
+    width: 3rem;
+}
+
+.backButton{
+    margin-top: 1rem;
+}
