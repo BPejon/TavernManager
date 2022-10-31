@@ -82,7 +82,7 @@ export class ShopBeverageComponent implements OnInit {
   }
 
   goBack(): void{
-    this.router.navigate(["traveller/shop"]);
+    this.router.navigate(["traveller"]);
   }
 
   buyBeverageDialog(bevName:string, bevPrice: number){
