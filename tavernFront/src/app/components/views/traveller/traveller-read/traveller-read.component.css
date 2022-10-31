@@ -30,11 +30,19 @@
 }
 .buy{
     color: green;
+    width: 0.5rem;
 }
 
-.description{
-    width: 30rem;
-}
-.actions{
+.name{
     width: 3rem;
 }
+
+.actions{
+    width: 1rem;
+}
+
+.action-cell{
+    width: 1rem;
+    display: inline-block;
+}
+

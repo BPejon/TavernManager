@@ -36,11 +36,11 @@
 
             <ng-container matColumnDef="actions">
                 <th mat-header-cell class ="actions" *matHeaderCellDef> Actions </th>
-                <td mat-cell *matCellDef= "let row"> {{row.actions}} 
+                <td mat-cell class="action-cell" *matCellDef= "let row"> {{row.actions}} 
                     <a class ="edit" routerLink= "update/{{row.name}}">
                         <i class="material-icons"> editoutlined</i>
                     </a>
-                    <a class ="inventory" routerLink= "{{row.name}}/beverageInventory">
+                    <a class ="inventory" routerLink= "{{row.name}}/foodInventory">
                         <i class="material-icons">backpackoutlined</i>
                     </a>
                     <a class ="buy" routerLink= "{{row.name}}/shopFood">

@@ -1,5 +1,5 @@
 <div class="content">
-    <mat-toolbar color = "secondary">
+    <mat-toolbar class="toolbar" color = "secondary">
         <span>Inventory</span>
         
         <div class="links">
@@ -42,7 +42,6 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell class ="actions" *matHeaderCellDef> Buy </th>
                 <td mat-cell *matCellDef= "let row"> {{row.actions}} 
-
                     <button matbutton class ="buy" (click)="drinkDialog(row.name)">Drink</button>    
                 </td>
             </ng-container>

@@ -39,3 +39,45 @@
 .backButton{
     margin-top: 1rem;
 }
+
+.toolbar{
+    background: rgba(214, 212, 212, 0.041);
+}
+.links{
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    display: inline-block;
+ 
+}
+
+.links a{
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
+    color: aliceblue;
+    font-family: "Montserrat", sans-serif;
+
+}
+
+.links a:hover{
+    color: hwb(293 5% 32% / 0.808)
+}
+.beverage{
+    margin-left: 0.5rem;
+}
+
+button{
+    margin-top: 1rem ;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(113, 3, 156);
+    transition: all 0.3 ease 0s;
+}
+
+button:hover{
+    background-color: rgba(113, 3, 156, 0.3) ;
+}
+
+.food{
+    color: rgb(113, 3, 156) !important;
+}
