@@ -52,7 +52,7 @@
                 <th mat-header-cell class ="actions" *matHeaderCellDef> Sell </th>
                 <td mat-cell *matCellDef= "let row"> {{row.actions}} 
 
-                    <button matbutton class ="sell" (click)="sellDialog(row.name)">Sell</button>    
+                    <button matbutton class ="sell" (click)="sellDialog(row.name, row.price)">Sell</button>    
                 </td>
             </ng-container>
 

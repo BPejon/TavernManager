@@ -25,6 +25,16 @@ export class ShopService {
     return this.http.put<void>(url, food);
   }
 
+  sellFood(id_trav:string, id_food:string): Observable<void>{
+    const url = `${this.baseUrl}/shop/${id_trav}/sellfood/${id_food}`;
+    return this.http.delete<void>(url);
+  }
+
+  sellBeverage(id_trav:string, id_beverage:string): Observable<void>{
+    const url = `${this.baseUrl}/shop/${id_trav}/selldrink/${id_beverage}`;
+    return this.http.delete<void>(url);
+  }
+
   message(str : String): void{
     this.snackBar.open(`${str}`, 'OK', {
       horizontalPosition: 'center',

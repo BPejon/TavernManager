@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Food } from '../../../food/food.model';
+import { DialogSellFoodComponent } from '../../dialogs/dialog-sell-food/dialog-sell-food.component';
 import { Traveller } from '../../traveller.model';
 import { TravellerService } from '../../traveller.service';
 
@@ -46,8 +47,15 @@ export class ShopSellFoodComponent implements OnInit {
     this.router.navigate([`traveller`]);
   }
 
-  sellDialog(foodName : string){
-
+  sellDialog(foodName : string, foodPrice: number){
+    this.dialog.open(DialogSellFoodComponent, {
+      data: {
+        travName: this.traveller.name,
+        travCoins: this.traveller.coins,
+        foodName: foodName,
+        foodPrice: foodPrice
+      }
+    })
 
   }
 
