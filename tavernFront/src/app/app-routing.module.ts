@@ -16,6 +16,8 @@ import { ShopFoodComponent } from './components/views/traveller/shop/shop-food/s
 import { ShopSelectorComponent } from './components/views/traveller/shop/shop-selector/shop-selector.component';
 import { InventoryFoodComponent } from './components/views/traveller/inventory/inventory-food/inventory-food.component';
 import { InventoryBeverageComponent } from './components/views/traveller/inventory/inventory-beverage/inventory-beverage.component';
+import { ShopSellBeverageComponent } from './components/views/traveller/shop/shop-sell-beverage/shop-sell-beverage.component';
+import { ShopSellFoodComponent } from './components/views/traveller/shop/shop-sell-food/shop-sell-food.component';
 
 
 const routes: Routes = [
@@ -78,6 +80,14 @@ const routes: Routes = [
   {
     path: "traveller/:id_trav/beverageInventory",
     component: InventoryBeverageComponent
+  },
+  {
+    path: "traveller/:id_trav/sellBeverage",
+    component: ShopSellBeverageComponent
+  },
+  {
+    path: "traveller/:id_trav/sellFood",
+    component: ShopSellFoodComponent
   }
 
 ];

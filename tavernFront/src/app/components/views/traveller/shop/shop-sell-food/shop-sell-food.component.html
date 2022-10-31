@@ -1,0 +1,66 @@
+<div class="content">
+    <mat-toolbar class="toolbar" color = "secondary">
+        <span>Shop</span>
+        
+        <div class="links">
+            <a class= "food" routerLink="../shopFood">Food</a>
+            <a class = "beverage" routerLink="../shopBeverage">Beverage</a>
+        </div>
+    </mat-toolbar>
+    
+        <div class="title">
+            <h1>Food Shop</h1>
+        </div>
+    
+        <nav class = "infos">
+          <h1>Coins {{coins}}</h1>
+          <button mat-button class="sellButton mat-elevation-z8" (click)="buy()" mat-raised-button color="primary" >Buy</button>
+      </nav>
+
+
+    
+    <div class="mat-elevation-z8 contentTable">
+        <table mat-table [dataSource] = "travFood" class="table">
+
+            <ng-container matColumnDef="name" >
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef= "let row"> {{row.name}} </td>
+            </ng-container>
+        
+
+            <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Sell For </th>
+            <td mat-cell *matCellDef= "let row"> {{row.price}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="mass">
+            <th mat-header-cell *matHeaderCellDef> Weight </th>
+            <td mat-cell *matCellDef= "let row"> {{row.mass}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="stockAmount">
+            <th mat-header-cell *matHeaderCellDef> Stock Amount</th>
+            <td mat-cell *matCellDef= "let row"> {{row.stockAmount}} </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="description">
+                <th mat-header-cell class = "description" *matHeaderCellDef> Description</th>
+                <td mat-cell *matCellDef= "let row"> {{row.description}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell class ="actions" *matHeaderCellDef> Sell </th>
+                <td mat-cell *matCellDef= "let row"> {{row.actions}} 
+
+                    <button matbutton class ="sell" (click)="sellDialog(row.name)">Sell</button>    
+                </td>
+            </ng-container>
+
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef= "let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+    <button mat-button class="backButton mat-elevation-z8" (click)="goBack()" mat-raised-button color="primary" >Back</button>
+</div>

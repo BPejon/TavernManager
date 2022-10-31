@@ -95,4 +95,8 @@ export class ShopBeverageComponent implements OnInit {
       }
     })
   }
+
+  sell(){
+    this.router.navigate([`traveller/${this.id_trav}/sellBeverage`]);
+  }
 }

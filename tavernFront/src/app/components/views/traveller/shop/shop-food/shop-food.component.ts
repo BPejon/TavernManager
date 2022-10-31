@@ -94,8 +94,10 @@ export class ShopFoodComponent implements OnInit {
         foodPrice: foodPrice
       }
     })
-
   }
 
+  sell(){
+    this.router.navigate([`traveller/${this.id_trav}/sellFood`]);
+  }
 
 }

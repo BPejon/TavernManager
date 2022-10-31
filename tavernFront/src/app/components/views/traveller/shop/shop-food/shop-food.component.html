@@ -7,13 +7,16 @@
         <a class= "food" routerLink="../shopFood">Food</a>
         <a class = "beverage" routerLink="../shopBeverage">Beverage</a>
     </div>
-
 </mat-toolbar>
+
     <div class="title">
         <h1>Food Shop</h1>
     </div>
 
-    <h1>Coins {{coins}}</h1>
+    <nav class = "infos">
+      <h1>Coins {{coins}}</h1>
+      <button mat-button class="sellButton mat-elevation-z8" (click)="sell()" mat-raised-button color="primary" >Sell</button>
+  </nav>
 
     <div class="tablecontent mat-elevation-z8">
         <table mat-table class="table" [dataSource]="food" >
