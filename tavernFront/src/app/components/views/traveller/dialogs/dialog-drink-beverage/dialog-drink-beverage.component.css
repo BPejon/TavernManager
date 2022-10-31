@@ -1,6 +1,6 @@
 .buttons{
     width: 100%;
-    justify-content: end;
+    text-align: end;
 }
 
 .cancel{

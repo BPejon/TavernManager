@@ -46,3 +46,15 @@
     display: inline-block;
 }
 
+button{
+    margin-top: 1rem ;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(113, 3, 156);
+    transition: all 0.3 ease 0s;
+}
+
+button:hover{
+    background-color: rgba(113, 3, 156, 0.3) ;
+}
+

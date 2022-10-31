@@ -46,12 +46,19 @@ export class InventoryBeverageComponent implements OnInit {
   }
 
   drinkDialog(beverageName: string){
-    this.dialog.open(DialogDrinkBeverageComponent, {
+    const dialogRef = this.dialog.open(DialogDrinkBeverageComponent, {
       data:{
         travName:this.traveller.name,
         bevName: beverageName
       }
     });
+
+    dialogRef.afterClosed().subscribe(result =>{
+      console.log(result);
+      if(result){
+        this.travellerService.message(`You've drink ${beverageName}`);
+      }
+    })
 
   }
 }

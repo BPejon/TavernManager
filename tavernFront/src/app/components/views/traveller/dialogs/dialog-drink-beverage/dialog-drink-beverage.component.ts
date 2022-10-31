@@ -24,10 +24,9 @@ export class DialogDrinkBeverageComponent implements OnInit {
 
   drink(){
     this.service.drinkBeverage(this.data.travName, this.data.bevName).subscribe(()=>{
-      this.dialogRef.close();
+      this.dialogRef.close(this.data.bevName);
       window.location.reload();
       this.service.message(`You've drink ${this.data.bevName}`);
-
     })
 
   }
