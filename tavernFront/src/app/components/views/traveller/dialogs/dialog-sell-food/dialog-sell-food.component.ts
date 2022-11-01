@@ -26,17 +26,13 @@ export class DialogSellFoodComponent implements OnInit {
   }
 
   sell(){
-    this.foodService.findById(this.data.foodName).subscribe(food=>{
-      this.shopService.sellFood(this.data.travName, this.data.foodName).subscribe(() => {
-        this.dialogRef.close();
-        window.location.reload();
-        this.shopService.message(`${this.data.foodName} bought successfully`);
-      }, err=>{
-        this.shopService.message(`Not enought money to buy this item!`);
+    this.shopService.sellFood(this.data.travName, this.data.foodName).subscribe(() => {
+      this.dialogRef.close();
+      window.location.reload();
+      this.shopService.message(`${this.data.foodName} bought successfully`);
+    }, err=>{
+      this.shopService.message(`Not enought money to buy this item!`);
     })
-
-    })
-
   }
 
 }

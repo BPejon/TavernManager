@@ -1,0 +1,11 @@
+.buttons{
+    width: 100%;
+    justify-content: end;
+}
+
+.cancel{
+    margin-right: 1rem;
+}
+.text{
+    width: 100%;
+}
