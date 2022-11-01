@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class InventoryController {
     }
 
     @Operation(summary = "Consumes the food from Inventory")
-    @PutMapping("/{travellerName}/eat/{foodName}")
+    @DeleteMapping("/{travellerName}/eat/{foodName}")
     public ResponseEntity<Object> useFood(@PathVariable String travellerName, @PathVariable String foodName ){
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
         if(!traveller.isPresent()){
@@ -46,7 +47,7 @@ public class InventoryController {
     }
 
     @Operation(summary = "Consumes Drink from Inventory")
-    @PutMapping("/{travellerName}/drink/{drinkName}")
+    @DeleteMapping("/{travellerName}/drink/{drinkName}")
     public ResponseEntity<Object> useDrink(@PathVariable String travellerName, @PathVariable String drinkName) {
         Optional<TravellerModel> traveller = travellerService.getTraveller(travellerName);
         if (!traveller.isPresent()) {
