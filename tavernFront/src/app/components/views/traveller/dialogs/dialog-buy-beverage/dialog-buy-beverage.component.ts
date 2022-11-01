@@ -16,6 +16,7 @@ export class DialogBuyBeverageComponent implements OnInit {
     public dialogRef: MatDialogRef<DialogBuyBeverageComponent>,
     private shopService: ShopService,
     private bevService: BeveragesService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -30,9 +31,11 @@ export class DialogBuyBeverageComponent implements OnInit {
     this.bevService.findById(this.data.bevName).subscribe(beverage=>{
       this.shopService.buyBeverage(this.data.travName, this.data.bevName, beverage).subscribe(() =>{
         this.dialogRef.close();
-        window.location.reload();
-        this.shopService.message(`${this.data.bevName} bought successfully`);
+        this.router.navigate(['']).then( () =>{
+          this.router.navigate([`traveller/${this.data.travName}/shopBeverage`]);
+          this.shopService.message(`${this.data.bevName} bought successfully`);
 
+        })
       },err =>{
         this.shopService.message(`Not enought money to buy this item!`);
       })

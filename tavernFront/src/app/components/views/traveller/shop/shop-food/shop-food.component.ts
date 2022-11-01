@@ -18,7 +18,7 @@ export class ShopFoodComponent implements OnInit {
 
   DEFAULT_PAGE_INDEX : number = 0;
   DEFAULT_PAGE_SIZE: number = 5;
-  displayedColumns: string[] = ['name', 'price', 'weight', 'stockAmount', 'description', 'actions'];
+  displayedColumns: string[] = ['name', 'price', 'mass', 'stockAmount', 'description', 'actions'];
 
   //Inicializar tudo da Page pra parar o erro
   food : Food[] = [];

@@ -19,7 +19,6 @@ export class DialogSellBeverageComponent implements OnInit {
     private router: Router,
   ) { }
 
-  id_trav !: string;
   ngOnInit(): void {
     };
 
