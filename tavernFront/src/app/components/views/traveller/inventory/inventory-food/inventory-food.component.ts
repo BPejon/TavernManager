@@ -14,7 +14,7 @@ import { TravellerService } from '../../traveller.service';
 })
 export class InventoryFoodComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'price', 'bottleSize', 'stockAmount', 'description', 'actions'];
+  displayedColumns: string[] = ['name', 'price', 'mass', 'description', 'actions'];
 
   travFood : Food[] = [];
   traveller!: Traveller;

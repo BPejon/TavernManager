@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.PositiveOrZero;
@@ -17,7 +18,8 @@ import java.util.Set;
 @Table(name = "TRAVELLER")
 public class TravellerModel {
     @Id
-    @Column(nullable = false, length = 255)
+    @Length(min = 3, max = 255)
+    @Column(nullable = false)
     private String name;
     @Column(length = 100)
     private String province;

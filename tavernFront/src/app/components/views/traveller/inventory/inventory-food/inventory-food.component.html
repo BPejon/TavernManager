@@ -24,14 +24,9 @@
             <td mat-cell *matCellDef= "let row"> {{row.price}} </td>
             </ng-container>
         
-            <ng-container matColumnDef="bottleSize">
-            <th mat-header-cell *matHeaderCellDef> Bottle Size </th>
-            <td mat-cell *matCellDef= "let row"> {{row.bottleSize}} </td>
-            </ng-container>
-        
-            <ng-container matColumnDef="stockAmount">
-            <th mat-header-cell *matHeaderCellDef> Stock Amount</th>
-            <td mat-cell *matCellDef= "let row"> {{row.stockAmount}} </td>
+            <ng-container matColumnDef="mass">
+            <th mat-header-cell *matHeaderCellDef> Weight </th>
+            <td mat-cell *matCellDef= "let row"> {{row.mass}} </td>
             </ng-container>
 
             <ng-container  matColumnDef="description">

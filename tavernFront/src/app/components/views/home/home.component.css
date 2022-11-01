@@ -3,6 +3,13 @@
     margin: 1rem auto;
 }
 
+.image{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 500px;
+}
+
 @media(max-width: 450px){
     .home {
         width: 70%;

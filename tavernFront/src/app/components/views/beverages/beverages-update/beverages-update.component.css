@@ -39,3 +39,10 @@ button{
 button:hover{
     background-color: rgba(113, 3, 156, 0.3) ;
 }
+
+.updateButton:hover{
+    background-color: rgba(8, 131, 202, 0.726);
+}
+.deleteButton:hover{
+    background-color: rgba(204, 16, 16, 0.856);
+}

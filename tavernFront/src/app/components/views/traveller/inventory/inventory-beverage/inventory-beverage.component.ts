@@ -13,7 +13,7 @@ import { TravellerService } from '../../traveller.service';
 })
 export class InventoryBeverageComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'price', 'bottleSize', 'stockAmount', 'description', 'actions'];
+  displayedColumns: string[] = ['name', 'price', 'bottleSize', 'description', 'actions'];
 
   travBeverages : Beverages[] = [];
   traveller!: Traveller;
